@@ -1,0 +1,12 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: stock-alert-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: stock_alert
+      MYSQL_USER: stock_user
+      MYSQL_PASSWORD: stock_password
+      TZ: Asia/Seoul
+    ports:
+      - "3306:3306"
