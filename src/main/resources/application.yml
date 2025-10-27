@@ -45,3 +45,19 @@ monitoring:
     alert-check-interval: 30
     # 배치 처리 크기
     batch-size: 100
+
+# Logging Configuration
+logging:
+  level:
+    root: INFO
+    sotck.stockalert: DEBUG
+    org.springframework.web: INFO
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [%X{correlationId:-NO_CORRELATION_ID}] [%X{userId:-anonymous}] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [%X{correlationId:-NO_CORRELATION_ID}] [%X{userId:-anonymous}] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/stock-alert.log
+    max-size: 10MB
+    max-history: 30
