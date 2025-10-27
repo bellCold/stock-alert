@@ -15,11 +15,7 @@ import java.math.BigDecimal
 class AlertController(private val alertManagementService: AlertManagementService) {
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    fun createAlert(
-        @RequestBody request: CreateAlertApiRequest,
-        @AuthUserId userId: Long
-    ): ApiResponse<AlertResponse> {
+    fun createAlert(@RequestBody request: CreateAlertApiRequest, @AuthUserId userId: Long): ApiResponse<AlertResponse> {
         val alert = alertManagementService.createAlert(
             CreateAlertRequest(
                 userId = userId,
@@ -40,7 +36,6 @@ class AlertController(private val alertManagementService: AlertManagementService
     }
 
     @DeleteMapping("/{alertId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
     fun deleteAlert(
         @PathVariable alertId: Long,
         @AuthUserId userId: Long
