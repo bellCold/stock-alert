@@ -6,6 +6,7 @@ import org.springframework.web.bind.support.WebDataBinderFactory
 import org.springframework.web.context.request.NativeWebRequest
 import org.springframework.web.method.support.HandlerMethodArgumentResolver
 import org.springframework.web.method.support.ModelAndViewContainer
+import sotck.stockalert.common.exception.InvalidUserIdException
 
 @Component
 class AuthUserIdArgumentResolver : HandlerMethodArgumentResolver {
@@ -20,9 +21,9 @@ class AuthUserIdArgumentResolver : HandlerMethodArgumentResolver {
         webRequest: NativeWebRequest,
         binderFactory: WebDataBinderFactory?
     ): Long {
-        val userId = webRequest.getHeader(USER_ID_HEADER) ?: throw IllegalArgumentException("X-User-Id header is required")
+        val userId = webRequest.getHeader(USER_ID_HEADER) ?: throw InvalidUserIdException("X-User-Id header is required")
 
-        return userId.toLongOrNull() ?: throw IllegalArgumentException("X-User-Id header must be a valid number")
+        return userId.toLongOrNull() ?: throw InvalidUserIdException("X-User-Id header must be a valid number")
     }
 
     companion object {

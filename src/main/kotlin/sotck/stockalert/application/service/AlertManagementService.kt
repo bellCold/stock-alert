@@ -2,6 +2,9 @@ package sotck.stockalert.application.service
 
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import sotck.stockalert.common.exception.AlertNotFoundException
+import sotck.stockalert.common.exception.StockNotFoundException
+import sotck.stockalert.common.exception.UnauthorizedAlertAccessException
 import sotck.stockalert.domain.alert.Alert
 import sotck.stockalert.domain.alert.AlertCondition
 import sotck.stockalert.domain.alert.AlertRepository
@@ -14,7 +17,7 @@ import java.math.BigDecimal
 class AlertManagementService(private val alertRepository: AlertRepository, private val stockRepository: StockRepository) {
 
     fun createAlert(request: CreateAlertRequest): Alert {
-        val stock = stockRepository.findByStockCode(request.stockCode) ?: throw IllegalArgumentException("Stock not found: ${request.stockCode}")
+        val stock = stockRepository.findByStockCode(request.stockCode) ?: throw StockNotFoundException(request.stockCode)
 
         val condition = when (request.alertType) {
             AlertType.TARGET_PRICE -> AlertCondition(
@@ -45,7 +48,7 @@ class AlertManagementService(private val alertRepository: AlertRepository, priva
     fun disableAlert(alertId: Long, userId: Long) {
         val alert = alertRepository.findByUserId(userId)
             .firstOrNull { it.id == alertId }
-            ?: throw IllegalArgumentException("Alert not found or unauthorized")
+            ?: throw UnauthorizedAlertAccessException(alertId, userId)
 
         alert.disable()
         alertRepository.save(alert)
@@ -54,7 +57,7 @@ class AlertManagementService(private val alertRepository: AlertRepository, priva
     fun deleteAlert(alertId: Long, userId: Long) {
         val alert = alertRepository.findByUserId(userId)
             .firstOrNull { it.id == alertId }
-            ?: throw IllegalArgumentException("Alert not found or unauthorized")
+            ?: throw UnauthorizedAlertAccessException(alertId, userId)
 
         alertRepository.delete(alert)
     }
