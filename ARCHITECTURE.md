@@ -16,6 +16,7 @@
 ```
 stock-alert/
 ├── domain/                           # 핵심 비즈니스 로직
+│   ├── BaseEntity.kt                 # JPA Auditing 기본 엔티티
 │   ├── stock/                        # 주식 도메인
 │   │   ├── Stock.kt                  # 주식 엔티티
 │   │   ├── Price.kt                  # 가격 값 객체
@@ -55,7 +56,19 @@ stock-alert/
 │       └── notification/             # 알림 전송
 │           └── LogNotificationAdapter.kt
 │
+├── common/                           # 공통 유틸리티 및 인프라
+│   ├── Logger.kt                     # 로거 확장 함수
+│   ├── auth/                         # 인증/인가
+│   │   ├── AuthUserId.kt             # 사용자 ID 어노테이션
+│   │   └── AuthUserIdArgumentResolver.kt
+│   └── exception/                    # 예외 처리
+│       ├── StockAlertException.kt    # 커스텀 예외 계층
+│       ├── ErrorCode.kt              # 에러 코드 정의
+│       └── GlobalExceptionHandler.kt # 전역 예외 핸들러
+│
 └── config/                           # 설정
+    ├── JpaAuditingConfig.kt          # JPA Auditing 설정
+    ├── WebMvcConfig.kt               # Spring MVC 설정
     ├── RestTemplateConfig.kt
     └── SchedulingConfig.kt
 ```
@@ -65,10 +78,12 @@ stock-alert/
 ### 1. Domain Layer (도메인 계층)
 - **역할**: 핵심 비즈니스 로직과 규칙을 담당
 - **특징**:
-  - 외부 의존성 없음 (순수 Kotlin/Java)
+  - 외부 의존성 최소화 (JPA 제외)
   - 불변성(Immutability) 중시
   - 값 객체(Value Object)로 도메인 개념 표현
+  - JPA Auditing을 통한 자동 타임스탬프 관리
 - **주요 클래스**:
+  - `BaseEntity`: createdAt/updatedAt 자동 관리
   - `Stock`: 주식 엔티티, 가격 업데이트 및 이벤트 발생
   - `Price`: 가격 값 객체, 가격 비교 로직 포함
   - `Alert`: 알림 엔티티, 조건 체크 로직 포함
@@ -80,9 +95,10 @@ stock-alert/
   - 트랜잭션 관리
   - 도메인 로직 오케스트레이션
   - Port 인터페이스 정의
+  - 커스텀 예외를 통한 도메인 에러 처리
 - **주요 서비스**:
   - `StockPriceMonitoringService`: 주가 모니터링 및 알림 처리
-  - `AlertManagementService`: 알림 CRUD 관리
+  - `AlertManagementService`: 알림 CRUD 관리 (StockNotFoundException, UnauthorizedAlertAccessException 사용)
 
 ### 3. Adapter Layer (어댑터 계층)
 - **역할**: 외부 세계와의 연결
@@ -93,12 +109,30 @@ stock-alert/
 
 #### Inbound Adapters (인바운드 어댑터)
 - **REST API**: 클라이언트 요청 처리
-- **Scheduler**: 주기적 작업 실행
+  - `@AuthUserId`: 커스텀 어노테이션으로 사용자 인증 간소화
+  - `AuthUserIdArgumentResolver`: X-User-Id 헤더 자동 파싱
+- **Scheduler**: 주기적 작업 실행 (Logger extension 함수 사용)
 
 #### Outbound Adapters (아웃바운드 어댑터)
 - **Persistence**: 데이터베이스 접근
 - **API Client**: 외부 주식 데이터 API 호출
 - **Notification**: 알림 전송 (이메일, SMS, Push 등)
+
+### 4. Common Layer (공통 계층)
+- **역할**: 횡단 관심사(Cross-cutting Concerns) 처리
+- **주요 구성요소**:
+  - **Logger**: Extension 함수를 통한 간편한 로거 생성
+    ```kotlin
+    private val log = logger()  // 현재 클래스 타입으로 자동 생성
+    ```
+  - **Authentication**: `@AuthUserId` 어노테이션과 ArgumentResolver
+    - X-User-Id 헤더 자동 파싱 및 검증
+    - InvalidUserIdException 발생
+  - **Exception Handling**: 체계적인 예외 처리 시스템
+    - `StockAlertException`: Sealed class 기반 도메인 예외
+    - `ErrorCode`: 에러 코드 및 HTTP 상태, 로그 레벨 관리
+    - `GlobalExceptionHandler`: Spring ProblemDetail (RFC 7807) 반환
+    - 로그 레벨별 자동 로깅 (DEBUG, INFO, WARN, ERROR)
 
 ## 주요 디자인 패턴
 
@@ -131,6 +165,37 @@ sealed class PriceChangeEvent {
     data class NewHighPrice(...)
     data class Surge(...)
     data class Fall(...)
+}
+```
+
+### 4. Extension Function Pattern (확장 함수 패턴)
+Kotlin의 확장 함수를 활용한 코드 간결화
+
+```kotlin
+// Logger 생성
+inline fun <reified T> T.logger(): Logger {
+    return LoggerFactory.getLogger(T::class.java)
+}
+```
+
+### 5. Custom Annotation + ArgumentResolver
+Spring MVC의 ArgumentResolver를 활용한 횡단 관심사 처리
+
+```kotlin
+@AuthUserId userId: Long  // X-User-Id 헤더 자동 파싱
+```
+
+### 6. RFC 7807 Problem Details
+표준 에러 응답 포맷 사용
+
+```json
+{
+  "type": "https://api.stockalert.com/errors/STOCK-1001",
+  "title": "Stock not found",
+  "status": 404,
+  "detail": "Stock not found: 005930",
+  "instance": "/api/v1/alerts",
+  "errorCode": "STOCK-1001"
 }
 ```
 
@@ -195,6 +260,28 @@ class EmailNotificationAdapter : NotificationPort {
 - **주식 가격 업데이트**: 60초마다 실행 (설정 가능)
 - **알림 조건 체크**: 30초마다 실행 (설정 가능)
 
+## 코드 품질 개선 사항
+
+### 1. Logger 패턴 개선
+- **Before**: `LoggerFactory.getLogger(javaClass)` 반복
+- **After**: `private val log = logger()` Extension 함수 사용
+- **이점**: 코드 간결화, 재사용성 향상
+
+### 2. BaseEntity 도입
+- **Before**: 각 엔티티마다 createdAt, updatedAt 수동 관리
+- **After**: BaseEntity 상속 + JPA Auditing 자동 관리
+- **이점**: 코드 중복 제거, 자동 타임스탬프 관리
+
+### 3. 커스텀 예외 시스템
+- **Before**: `IllegalArgumentException` 사용
+- **After**: 도메인 특화 예외 (StockNotFoundException 등)
+- **이점**: 명확한 에러 의도, 로그 레벨 자동화, RFC 7807 표준 준수
+
+### 4. ArgumentResolver 활용
+- **Before**: `@RequestHeader("X-User-Id") userId: Long` 반복
+- **After**: `@AuthUserId userId: Long`
+- **이점**: 코드 간결화, 검증 로직 중앙화
+
 ## 향후 개선 사항
 
 1. **이벤트 소싱(Event Sourcing)**: 모든 가격 변동 이력 저장
@@ -204,3 +291,5 @@ class EmailNotificationAdapter : NotificationPort {
 5. **WebSocket**: 실시간 알림 푸시
 6. **멀티 모듈**: 도메인별 모듈 분리
 7. **테스트 자동화**: 단위/통합 테스트 작성
+8. **OpenAPI/Swagger**: API 문서 자동화
+9. **Spring Security**: 실제 인증/인가 구현
