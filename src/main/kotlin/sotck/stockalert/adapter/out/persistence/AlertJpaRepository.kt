@@ -10,6 +10,5 @@ interface AlertJpaRepository : JpaRepository<Alert, Long> {
 
     fun findByStockId(stockId: Long): List<Alert>
 
-    @Query("SELECT a FROM Alert a WHERE a.status = :status")
     fun findByStatus(status: AlertStatus): List<Alert>
 }

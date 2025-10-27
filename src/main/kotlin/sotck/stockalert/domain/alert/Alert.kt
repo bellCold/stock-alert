@@ -1,7 +1,7 @@
 package sotck.stockalert.domain.alert
 
 import jakarta.persistence.*
-import sotck.stockalert.domain.common.BaseEntity
+import sotck.stockalert.domain.BaseEntity
 import sotck.stockalert.domain.stock.Stock
 import java.time.LocalDateTime
 

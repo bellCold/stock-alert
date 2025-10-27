@@ -1,7 +1,7 @@
 package sotck.stockalert.domain.stock
 
 import jakarta.persistence.*
-import sotck.stockalert.domain.common.BaseEntity
+import sotck.stockalert.domain.BaseEntity
 import java.math.BigDecimal
 
 @Entity

@@ -1,4 +1,4 @@
-package sotck.stockalert.domain.common
+package sotck.stockalert.domain
 
 import jakarta.persistence.Column
 import jakarta.persistence.EntityListeners

@@ -7,9 +7,6 @@ import sotck.stockalert.application.port.out.StockDataPort
 import sotck.stockalert.domain.alert.AlertRepository
 import sotck.stockalert.domain.stock.StockRepository
 
-/**
- * 주식 가격 모니터링 및 알림 처리 Use Case
- */
 @Service
 @Transactional
 class StockPriceMonitoringService(
@@ -18,9 +15,6 @@ class StockPriceMonitoringService(
     private val stockDataPort: StockDataPort,
     private val notificationPort: NotificationPort
 ) {
-    /**
-     * 모든 활성화된 알림을 체크하고 조건에 맞으면 알림 발송
-     */
     fun checkAndNotifyAlerts() {
         val activeAlerts = alertRepository.findActiveAlerts()
 
@@ -37,9 +31,6 @@ class StockPriceMonitoringService(
         }
     }
 
-    /**
-     * 특정 종목의 실시간 가격 업데이트
-     */
     fun updateStockPrice(stockCode: String) {
         val stock = stockRepository.findByStockCode(stockCode)
             ?: throw IllegalArgumentException("Stock not found: $stockCode")
@@ -47,7 +38,6 @@ class StockPriceMonitoringService(
         val currentPrice = stockDataPort.getCurrentPrice(stockCode)
             ?: throw IllegalStateException("Failed to fetch price for: $stockCode")
 
-        // 가격 업데이트 및 이벤트 발생
         val event = stock.updatePrice(currentPrice)
         stockRepository.save(stock)
 
@@ -55,9 +45,6 @@ class StockPriceMonitoringService(
         event?.let { handlePriceChangeEvent(it) }
     }
 
-    /**
-     * 모든 종목의 가격 일괄 업데이트
-     */
     fun updateAllStockPrices() {
         val stocks = stockRepository.findAll()
         val stockCodes = stocks.map { it.stockCode }

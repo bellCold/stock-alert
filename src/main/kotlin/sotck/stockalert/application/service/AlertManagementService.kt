@@ -9,27 +9,21 @@ import sotck.stockalert.domain.alert.AlertType
 import sotck.stockalert.domain.stock.StockRepository
 import java.math.BigDecimal
 
-/**
- * 알림 관리 Use Case
- */
 @Service
 @Transactional
 class AlertManagementService(private val alertRepository: AlertRepository, private val stockRepository: StockRepository) {
-    /**
-     * 새로운 알림 생성
-     */
+
     fun createAlert(request: CreateAlertRequest): Alert {
-        val stock = stockRepository.findByStockCode(request.stockCode)
-            ?: throw IllegalArgumentException("Stock not found: ${request.stockCode}")
+        val stock = stockRepository.findByStockCode(request.stockCode) ?: throw IllegalArgumentException("Stock not found: ${request.stockCode}")
 
         val condition = when (request.alertType) {
             AlertType.TARGET_PRICE -> AlertCondition(
                 targetPrice = request.targetPrice,
                 isAbove = request.isAbove ?: true
             )
-            AlertType.CHANGE_RATE -> AlertCondition(
-                changeRateThreshold = request.changeRateThreshold
-            )
+
+            AlertType.CHANGE_RATE -> AlertCondition(changeRateThreshold = request.changeRateThreshold)
+
             else -> AlertCondition()
         }
 
@@ -43,17 +37,11 @@ class AlertManagementService(private val alertRepository: AlertRepository, priva
         return alertRepository.save(alert)
     }
 
-    /**
-     * 사용자의 모든 알림 조회
-     */
     @Transactional(readOnly = true)
     fun getUserAlerts(userId: Long): List<Alert> {
         return alertRepository.findByUserId(userId)
     }
 
-    /**
-     * 알림 비활성화
-     */
     fun disableAlert(alertId: Long, userId: Long) {
         val alert = alertRepository.findByUserId(userId)
             .firstOrNull { it.id == alertId }
@@ -63,9 +51,6 @@ class AlertManagementService(private val alertRepository: AlertRepository, priva
         alertRepository.save(alert)
     }
 
-    /**
-     * 알림 삭제
-     */
     fun deleteAlert(alertId: Long, userId: Long) {
         val alert = alertRepository.findByUserId(userId)
             .firstOrNull { it.id == alertId }
