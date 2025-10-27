@@ -38,13 +38,13 @@ class Stock(
         val changeRate = calculateChangeRate(oldPrice, newPrice)
         return when {
             changeRate >= SURGE_THRESHOLD -> PriceChangeEvent.Surge(this, oldPrice, newPrice, changeRate)
-            changeRate <= -FALL_THRESHOLD -> PriceChangeEvent.Fall(this, oldPrice, newPrice, changeRate)
+            changeRate <= FALL_THRESHOLD.negate() -> PriceChangeEvent.Fall(this, oldPrice, newPrice, changeRate)
             else -> null
         }
     }
 
     private fun calculateChangeRate(oldPrice: Price, newPrice: Price): BigDecimal {
-        return ((newPrice.value - oldPrice.value) / oldPrice.value) * BigDecimal(100)
+        return ((newPrice.value - oldPrice.value).divide(oldPrice.value, 10, java.math.RoundingMode.HALF_UP)) * BigDecimal(100)
     }
 
     companion object {
