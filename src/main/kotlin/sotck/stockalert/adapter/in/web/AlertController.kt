@@ -1,11 +1,11 @@
 package sotck.stockalert.adapter.`in`.web
 
 import org.springframework.http.HttpStatus
-import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import sotck.stockalert.application.service.AlertManagementService
 import sotck.stockalert.application.service.CreateAlertRequest
 import sotck.stockalert.common.auth.AuthUserId
+import sotck.stockalert.common.response.ApiResponse
 import sotck.stockalert.domain.alert.Alert
 import sotck.stockalert.domain.alert.AlertType
 import java.math.BigDecimal
@@ -15,7 +15,11 @@ import java.math.BigDecimal
 class AlertController(private val alertManagementService: AlertManagementService) {
 
     @PostMapping
-    fun createAlert(@RequestBody request: CreateAlertApiRequest, @AuthUserId userId: Long): ResponseEntity<AlertResponse> {
+    @ResponseStatus(HttpStatus.CREATED)
+    fun createAlert(
+        @RequestBody request: CreateAlertApiRequest,
+        @AuthUserId userId: Long
+    ): ApiResponse<AlertResponse> {
         val alert = alertManagementService.createAlert(
             CreateAlertRequest(
                 userId = userId,
@@ -26,26 +30,31 @@ class AlertController(private val alertManagementService: AlertManagementService
                 isAbove = request.isAbove
             )
         )
-        return ResponseEntity.status(HttpStatus.CREATED)
-            .body(alert.toResponse())
+        return ApiResponse.success(alert.toResponse())
     }
 
     @GetMapping
-    fun getUserAlerts(@AuthUserId userId: Long): ResponseEntity<List<AlertResponse>> {
+    fun getUserAlerts(@AuthUserId userId: Long): ApiResponse<List<AlertResponse>> {
         val alerts = alertManagementService.getUserAlerts(userId)
-        return ResponseEntity.ok(alerts.map { it.toResponse() })
+        return ApiResponse.success(alerts.map { it.toResponse() })
     }
 
     @DeleteMapping("/{alertId}")
-    fun deleteAlert(@PathVariable alertId: Long, @AuthUserId userId: Long): ResponseEntity<Void> {
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    fun deleteAlert(
+        @PathVariable alertId: Long,
+        @AuthUserId userId: Long
+    ) {
         alertManagementService.deleteAlert(alertId, userId)
-        return ResponseEntity.noContent().build()
     }
 
     @PutMapping("/{alertId}/disable")
-    fun disableAlert(@PathVariable alertId: Long, @AuthUserId userId: Long): ResponseEntity<Void> {
+    fun disableAlert(
+        @PathVariable alertId: Long,
+        @AuthUserId userId: Long
+    ): ApiResponse<Unit> {
         alertManagementService.disableAlert(alertId, userId)
-        return ResponseEntity.ok().build()
+        return ApiResponse.success(Unit)
     }
 }
 

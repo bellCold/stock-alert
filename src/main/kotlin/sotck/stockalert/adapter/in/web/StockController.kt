@@ -1,37 +1,33 @@
 package sotck.stockalert.adapter.`in`.web
 
-import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import sotck.stockalert.application.service.StockPriceMonitoringService
+import sotck.stockalert.application.service.StockQueryService
+import sotck.stockalert.common.response.ApiResponse
 import sotck.stockalert.domain.stock.Stock
-import sotck.stockalert.domain.stock.StockRepository
 import java.math.BigDecimal
 
 @RestController
 @RequestMapping("/api/v1/stocks")
-class StockController(private val stockRepository: StockRepository, private val stockPriceMonitoringService: StockPriceMonitoringService) {
+class StockController(private val stockQueryService: StockQueryService, private val stockPriceMonitoringService: StockPriceMonitoringService) {
 
     @GetMapping("/{stockCode}")
-    fun getStock(@PathVariable stockCode: String): ResponseEntity<StockResponse> {
-        val stock = stockRepository.findByStockCode(stockCode)
-            ?: return ResponseEntity.notFound().build()
-
-        return ResponseEntity.ok(stock.toResponse())
+    fun getStock(@PathVariable stockCode: String): ApiResponse<StockResponse> {
+        val stock = stockQueryService.getStock(stockCode)
+        return ApiResponse.success(stock.toResponse())
     }
 
     @PostMapping("/{stockCode}/refresh")
-    fun refreshStockPrice(@PathVariable stockCode: String): ResponseEntity<StockResponse> {
+    fun refreshStockPrice(@PathVariable stockCode: String): ApiResponse<StockResponse> {
         stockPriceMonitoringService.updateStockPrice(stockCode)
-        val stock = stockRepository.findByStockCode(stockCode)
-            ?: return ResponseEntity.notFound().build()
-
-        return ResponseEntity.ok(stock.toResponse())
+        val stock = stockQueryService.getStock(stockCode)
+        return ApiResponse.success(stock.toResponse())
     }
 
     @GetMapping
-    fun getAllStocks(): ResponseEntity<List<StockResponse>> {
-        val stocks = stockRepository.findAll()
-        return ResponseEntity.ok(stocks.map { it.toResponse() })
+    fun getAllStocks(): ApiResponse<List<StockResponse>> {
+        val stocks = stockQueryService.getAllStocks()
+        return ApiResponse.success(stocks.map { it.toResponse() })
     }
 }
 
