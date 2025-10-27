@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import sotck.stockalert.application.service.AlertManagementService
 import sotck.stockalert.application.service.CreateAlertRequest
+import sotck.stockalert.common.auth.AuthUserId
 import sotck.stockalert.domain.alert.Alert
 import sotck.stockalert.domain.alert.AlertType
 import java.math.BigDecimal
@@ -14,7 +15,7 @@ import java.math.BigDecimal
 class AlertController(private val alertManagementService: AlertManagementService) {
 
     @PostMapping
-    fun createAlert(@RequestBody request: CreateAlertApiRequest, @RequestHeader("X-User-Id") userId: Long): ResponseEntity<AlertResponse> {
+    fun createAlert(@RequestBody request: CreateAlertApiRequest, @AuthUserId userId: Long): ResponseEntity<AlertResponse> {
         val alert = alertManagementService.createAlert(
             CreateAlertRequest(
                 userId = userId,
@@ -30,19 +31,19 @@ class AlertController(private val alertManagementService: AlertManagementService
     }
 
     @GetMapping
-    fun getUserAlerts(@RequestHeader("X-User-Id") userId: Long): ResponseEntity<List<AlertResponse>> {
+    fun getUserAlerts(@AuthUserId userId: Long): ResponseEntity<List<AlertResponse>> {
         val alerts = alertManagementService.getUserAlerts(userId)
         return ResponseEntity.ok(alerts.map { it.toResponse() })
     }
 
     @DeleteMapping("/{alertId}")
-    fun deleteAlert(@PathVariable alertId: Long, @RequestHeader("X-User-Id") userId: Long): ResponseEntity<Void> {
+    fun deleteAlert(@PathVariable alertId: Long, @AuthUserId userId: Long): ResponseEntity<Void> {
         alertManagementService.deleteAlert(alertId, userId)
         return ResponseEntity.noContent().build()
     }
 
     @PutMapping("/{alertId}/disable")
-    fun disableAlert(@PathVariable alertId: Long, @RequestHeader("X-User-Id") userId: Long): ResponseEntity<Void> {
+    fun disableAlert(@PathVariable alertId: Long, @AuthUserId userId: Long): ResponseEntity<Void> {
         alertManagementService.disableAlert(alertId, userId)
         return ResponseEntity.ok().build()
     }
