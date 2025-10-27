@@ -17,7 +17,7 @@ class GlobalExceptionHandler {
         ex: StockAlertException,
         request: HttpServletRequest
     ): ResponseEntity<ProblemDetail> {
-        log.warn("StockAlertException occurred: ${ex.message}", ex)
+        logException(ex.errorCode.logLevel, "StockAlertException occurred: ${ex.message}", ex)
 
         return createProblemDetailResponse(
             errorCode = ex.errorCode,
@@ -31,7 +31,7 @@ class GlobalExceptionHandler {
         ex: IllegalArgumentException,
         request: HttpServletRequest
     ): ResponseEntity<ProblemDetail> {
-        log.warn("IllegalArgumentException occurred: ${ex.message}", ex)
+        logException(ErrorCode.INVALID_INPUT.logLevel, "IllegalArgumentException occurred: ${ex.message}", ex)
 
         return createProblemDetailResponse(
             errorCode = ErrorCode.INVALID_INPUT,
@@ -45,13 +45,22 @@ class GlobalExceptionHandler {
         ex: Exception,
         request: HttpServletRequest
     ): ResponseEntity<ProblemDetail> {
-        log.error("Unexpected exception occurred: ${ex.message}", ex)
+        logException(ErrorCode.INTERNAL_SERVER_ERROR.logLevel, "Unexpected exception occurred: ${ex.message}", ex)
 
         return createProblemDetailResponse(
             errorCode = ErrorCode.INTERNAL_SERVER_ERROR,
             detail = ErrorCode.INTERNAL_SERVER_ERROR.message,
             requestURI = request.requestURI
         )
+    }
+
+    private fun logException(logLevel: LogLevel, message: String, ex: Exception) {
+        when (logLevel) {
+            LogLevel.DEBUG -> log.debug(message, ex)
+            LogLevel.INFO -> log.info(message, ex)
+            LogLevel.WARN -> log.warn(message, ex)
+            LogLevel.ERROR -> log.error(message, ex)
+        }
     }
 
     private fun createProblemDetailResponse(
