@@ -2,17 +2,17 @@ package sotck.stockalert.domain.alert
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import sotck.stockalert.domain.stock.Price
-import sotck.stockalert.domain.stock.Stock
-import java.math.BigDecimal
+import sotck.stockalert.domain.AlertConditionFixture
+import sotck.stockalert.domain.AlertFixture
+import sotck.stockalert.domain.StockFixture
 
 class AlertTest {
 
     @Test
     fun `알림을 생성하면 ACTIVE 상태이다`() {
         // given
-        val stock = createStock()
-        val condition = AlertCondition(targetPrice = BigDecimal("60000"), isAbove = true)
+        val stock = StockFixture.create()
+        val condition = AlertConditionFixture.targetPriceAbove()
 
         // when
         val alert = Alert(
@@ -30,9 +30,9 @@ class AlertTest {
     @Test
     fun `목표가 이상 조건을 만족하면 true를 반환한다`() {
         // given
-        val stock = createStock(currentPrice = "65000")
-        val condition = AlertCondition(targetPrice = BigDecimal("60000"), isAbove = true)
-        val alert = createAlert(stock = stock, condition = condition)
+        val stock = StockFixture.create(currentPrice = "65000")
+        val condition = AlertConditionFixture.targetPriceAbove("60000")
+        val alert = AlertFixture.create(stock = stock, condition = condition)
 
         // when
         val isSatisfied = alert.checkCondition()
@@ -44,9 +44,9 @@ class AlertTest {
     @Test
     fun `목표가 이상 조건을 만족하지 않으면 false를 반환한다`() {
         // given
-        val stock = createStock(currentPrice = "55000")
-        val condition = AlertCondition(targetPrice = BigDecimal("60000"), isAbove = true)
-        val alert = createAlert(stock = stock, condition = condition)
+        val stock = StockFixture.create(currentPrice = "55000")
+        val condition = AlertConditionFixture.targetPriceAbove("60000")
+        val alert = AlertFixture.create(stock = stock, condition = condition)
 
         // when
         val isSatisfied = alert.checkCondition()
@@ -58,9 +58,9 @@ class AlertTest {
     @Test
     fun `목표가 이하 조건을 만족하면 true를 반환한다`() {
         // given
-        val stock = createStock(currentPrice = "55000")
-        val condition = AlertCondition(targetPrice = BigDecimal("60000"), isAbove = false)
-        val alert = createAlert(stock = stock, condition = condition)
+        val stock = StockFixture.create(currentPrice = "55000")
+        val condition = AlertConditionFixture.targetPriceBelow("60000")
+        val alert = AlertFixture.create(stock = stock, condition = condition)
 
         // when
         val isSatisfied = alert.checkCondition()
@@ -72,9 +72,9 @@ class AlertTest {
     @Test
     fun `목표가 이하 조건을 만족하지 않으면 false를 반환한다`() {
         // given
-        val stock = createStock(currentPrice = "65000")
-        val condition = AlertCondition(targetPrice = BigDecimal("60000"), isAbove = false)
-        val alert = createAlert(stock = stock, condition = condition)
+        val stock = StockFixture.create(currentPrice = "65000")
+        val condition = AlertConditionFixture.targetPriceBelow("60000")
+        val alert = AlertFixture.create(stock = stock, condition = condition)
 
         // when
         val isSatisfied = alert.checkCondition()
@@ -86,7 +86,7 @@ class AlertTest {
     @Test
     fun `알림을 트리거하면 TRIGGERED 상태가 되고 triggeredAt이 설정된다`() {
         // given
-        val alert = createAlert()
+        val alert = AlertFixture.create()
 
         // when
         alert.trigger()
@@ -99,7 +99,7 @@ class AlertTest {
     @Test
     fun `알림을 비활성화하면 DISABLED 상태가 된다`() {
         // given
-        val alert = createAlert()
+        val alert = AlertFixture.create()
 
         // when
         alert.disable()
@@ -111,7 +111,7 @@ class AlertTest {
     @Test
     fun `트리거된 알림을 비활성화할 수 있다`() {
         // given
-        val alert = createAlert()
+        val alert = AlertFixture.create()
         alert.trigger()
 
         // when
@@ -120,32 +120,5 @@ class AlertTest {
         // then
         assertThat(alert.status).isEqualTo(AlertStatus.DISABLED)
         assertThat(alert.triggeredAt).isNotNull() // triggeredAt은 유지됨
-    }
-
-    private fun createStock(
-        stockCode: String = "005930",
-        stockName: String = "삼성전자",
-        currentPrice: String = "60000"
-    ): Stock {
-        return Stock(
-            stockCode = stockCode,
-            stockName = stockName,
-            currentPrice = Price(BigDecimal(currentPrice)),
-            highestPrice = Price(BigDecimal(currentPrice))
-        )
-    }
-
-    private fun createAlert(
-        stock: Stock = createStock(),
-        userId: Long = 1L,
-        alertType: AlertType = AlertType.TARGET_PRICE,
-        condition: AlertCondition = AlertCondition(targetPrice = BigDecimal("60000"), isAbove = true)
-    ): Alert {
-        return Alert(
-            stock = stock,
-            userId = userId,
-            alertType = alertType,
-            condition = condition
-        )
     }
 }
