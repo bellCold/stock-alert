@@ -2,9 +2,6 @@ package sotck.stockalert.application.port.out
 
 import sotck.stockalert.domain.stock.Price
 
-/**
- * 외부 주식 데이터 API와 통신하기 위한 Port
- */
 interface StockDataPort {
     /**
      * 실시간 주식 가격 조회

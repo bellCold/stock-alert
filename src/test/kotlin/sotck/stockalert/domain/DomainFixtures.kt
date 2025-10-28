@@ -5,6 +5,8 @@ import sotck.stockalert.domain.alert.AlertCondition
 import sotck.stockalert.domain.alert.AlertType
 import sotck.stockalert.domain.stock.Price
 import sotck.stockalert.domain.stock.Stock
+import sotck.stockalert.domain.user.User
+import sotck.stockalert.domain.user.UserStatus
 import java.math.BigDecimal
 
 object StockFixture {
@@ -43,16 +45,58 @@ object AlertConditionFixture {
 
 object AlertFixture {
     fun create(
-        stock: Stock = StockFixture.create(),
+        stockId: Long = 1L,
         userId: Long = 1L,
         alertType: AlertType = AlertType.TARGET_PRICE,
         condition: AlertCondition = AlertConditionFixture.targetPriceAbove()
     ): Alert {
         return Alert(
-            stock = stock,
+            stockId = stockId,
             userId = userId,
             alertType = alertType,
             condition = condition
+        )
+    }
+}
+
+object UserFixture {
+    fun create(
+        email: String = "test@example.com",
+        name: String = "홍길동",
+        password: String = "hashed_password",
+        status: UserStatus = UserStatus.ACTIVE
+    ): User {
+        return User(
+            email = email,
+            name = name,
+            password = password,
+            status = status
+        )
+    }
+
+    fun inactive(
+        email: String = "test@example.com",
+        name: String = "홍길동",
+        password: String = "hashed_password"
+    ): User {
+        return User(
+            email = email,
+            name = name,
+            password = password,
+            status = UserStatus.INACTIVE
+        )
+    }
+
+    fun suspended(
+        email: String = "test@example.com",
+        name: String = "홍길동",
+        password: String = "hashed_password"
+    ): User {
+        return User(
+            email = email,
+            name = name,
+            password = password,
+            status = UserStatus.SUSPENDED
         )
     }
 }

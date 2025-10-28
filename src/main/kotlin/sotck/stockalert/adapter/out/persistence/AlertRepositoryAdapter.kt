@@ -7,6 +7,10 @@ import sotck.stockalert.domain.alert.AlertStatus
 
 @Repository
 class AlertRepositoryAdapter(private val alertJpaRepository: AlertJpaRepository) : AlertRepository {
+    override fun findById(id: Long): Alert? {
+        return alertJpaRepository.findById(id).orElse(null)
+    }
+
     override fun findByUserId(userId: Long): List<Alert> {
         return alertJpaRepository.findByUserId(userId)
     }

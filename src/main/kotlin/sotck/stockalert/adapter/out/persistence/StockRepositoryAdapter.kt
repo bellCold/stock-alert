@@ -7,6 +7,10 @@ import sotck.stockalert.domain.stock.StockRepository
 @Repository
 class StockRepositoryAdapter(private val stockJpaRepository: StockJpaRepository) : StockRepository {
 
+    override fun findById(id: Long): Stock? {
+        return stockJpaRepository.findById(id).orElse(null)
+    }
+
     override fun findByStockCode(stockCode: String): Stock? {
         return stockJpaRepository.findByStockCode(stockCode)
     }

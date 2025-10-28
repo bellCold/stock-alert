@@ -61,6 +61,24 @@
 📁 config/
   📄 RestTemplateConfig.kt
   📄 SchedulingConfig.kt
+  📄 WebMvcConfig.kt           ← Interceptor 및 ArgumentResolver 등록
+  📄 RedisConfig.kt            ← Redis 설정
+
+📁 common/ (공통 기능)
+  📁 auth/
+    📄 AuthUserId.kt           ← 사용자 ID 어노테이션
+    📄 AuthUserIdArgumentResolver.kt  ← 사용자 ID 자동 주입
+  📁 ratelimit/
+    📄 RateLimit.kt            ← Rate Limit 어노테이션
+    📄 RateLimitInterceptor.kt ← Rate Limit 인터셉터 (Redis 기반)
+  📁 logging/
+    📄 LoggingFilter.kt        ← 요청/응답 로깅 필터
+  📁 exception/
+    📄 StockAlertException.kt  ← 공통 예외 클래스
+    📄 ErrorCode.kt            ← 에러 코드 정의
+    📄 GlobalExceptionHandler.kt  ← 전역 예외 처리
+  📁 response/
+    📄 ApiResponse.kt          ← 공통 API 응답 형식
 ```
 
 ## 데이터 흐름
@@ -80,17 +98,27 @@
 [StockRepository] → [StockRepositoryAdapter] → [MySQL]
 ```
 
-### 2️⃣ 알림 생성 흐름
+### 2️⃣ 알림 생성 흐름 (Rate Limit 적용)
 ```
 [클라이언트]
     ↓
+[LoggingFilter] ← 요청/응답 로깅, MDC 설정
+    ↓
+[RateLimitInterceptor] ← Redis 기반 Rate Limit (3초)
+    ↓
 [AlertController] (POST /api/v1/alerts)
+    ↓
+[AuthUserIdArgumentResolver] ← X-User-Id 헤더 자동 주입
     ↓
 [AlertManagementService]
     ↓
 [Alert 엔티티 생성] ← 도메인 로직
     ↓
 [AlertRepository] → [MySQL]
+    ↓
+[ApiResponse] ← 공통 응답 형식
+    ↓
+[GlobalExceptionHandler] ← 예외 발생 시 처리
 ```
 
 ### 3️⃣ 알림 발송 흐름
@@ -178,14 +206,24 @@ class KakaoNotificationAdapter : NotificationPort {
 ## 실행 방법
 
 ```bash
-# 1. Docker로 MySQL 시작
+# 1. Docker로 MySQL, Redis 시작
 docker-compose up -d
 
 # 2. 애플리케이션 실행
 ./gradlew bootRun
 
 # 3. API 테스트
+# Health Check
+curl http://localhost:8080/api/v1/ping
+
+# 주식 조회
 curl http://localhost:8080/api/v1/stocks
+
+# 알림 생성 (Rate Limit 적용)
+curl -X POST http://localhost:8080/api/v1/alerts \
+  -H "Content-Type: application/json" \
+  -H "X-User-Id: 1" \
+  -d '{"stockCode":"005930","alertType":"TARGET_PRICE","targetPrice":70000}'
 ```
 
 ## 환경 변수 설정
@@ -201,8 +239,34 @@ export KIS_APP_SECRET=your-app-secret
 1. ✅ 도메인 모델 설계 완료
 2. ✅ 헥사고날 아키텍처 구조 완료
 3. ✅ REST API 엔드포인트 완료
-4. ⏳ 실제 API 연동 테스트
-5. ⏳ 단위/통합 테스트 작성
-6. ⏳ 인증/인가 구현
-7. ⏳ WebSocket 실시간 알림
-8. ⏳ Redis 캐싱 추가
+4. ✅ 공통 예외 처리 (GlobalExceptionHandler)
+5. ✅ 공통 API 응답 형식 (ApiResponse)
+6. ✅ 로깅 필터 (LoggingFilter, MDC)
+7. ✅ 사용자 인증 (AuthUserId, ArgumentResolver)
+8. ✅ Rate Limiting (Redis 기반, 다중 서버 지원)
+9. ⏳ 실제 API 연동 테스트
+10. ⏳ 단위/통합 테스트 작성
+11. ⏳ 인증/인가 구현 (JWT)
+12. ⏳ WebSocket 실시간 알림
+13. ⏳ Redis 캐싱 추가
+
+## 주요 기능
+
+### ✅ Rate Limiting (따닥 방지)
+- Redis 기반 분산 환경 지원
+- POST, PUT, PATCH, DELETE 자동 적용
+- 기본 3초 제한
+- 사용자별 + URI별 독립적 제한
+- 키 형식: `rate_limit:{userId}:{method}:{uri}`
+
+### ✅ 로깅
+- 요청/응답 자동 로깅
+- MDC를 통한 Correlation ID 추적
+- 사용자 ID 컨텍스트 전파
+- 요청 시간 측정
+
+### ✅ 예외 처리
+- 전역 예외 핸들러
+- RFC 7807 Problem Details 형식
+- 에러 코드 체계화
+- 로그 레벨 자동 분류

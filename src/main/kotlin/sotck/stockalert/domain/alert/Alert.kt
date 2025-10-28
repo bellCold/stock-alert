@@ -11,10 +11,10 @@ class Alert(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
 
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "stock_id")
-    val stock: Stock,
+    val stockId: Long,
 
+    @JoinColumn(name = "user_id")
     val userId: Long,
 
     @Enumerated(EnumType.STRING)
@@ -28,7 +28,7 @@ class Alert(
 
     var triggeredAt: LocalDateTime? = null
 ) : BaseEntity() {
-    fun checkCondition(): Boolean {
+    fun checkCondition(stock: Stock): Boolean {
         return condition.isSatisfied(stock)
     }
 

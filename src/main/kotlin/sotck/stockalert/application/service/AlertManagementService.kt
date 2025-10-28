@@ -31,7 +31,7 @@ class AlertManagementService(private val alertRepository: AlertRepository, priva
         }
 
         val alert = Alert(
-            stock = stock,
+            stockId = stock.id!!,
             userId = request.userId,
             alertType = request.alertType,
             condition = condition

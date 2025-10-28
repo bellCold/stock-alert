@@ -4,7 +4,10 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import sotck.stockalert.application.port.out.NotificationPort
 import sotck.stockalert.application.port.out.StockDataPort
+import sotck.stockalert.domain.alert.Alert
 import sotck.stockalert.domain.alert.AlertRepository
+import sotck.stockalert.domain.stock.PriceChangeEvent
+import sotck.stockalert.domain.stock.Stock
 import sotck.stockalert.domain.stock.StockRepository
 
 @Service
@@ -19,9 +22,11 @@ class StockPriceMonitoringService(
         val activeAlerts = alertRepository.findActiveAlerts()
 
         activeAlerts.forEach { alert ->
-            if (alert.checkCondition()) {
+            val stock = stockRepository.findById(alert.stockId) ?: return@forEach
+
+            if (alert.checkCondition(stock)) {
                 // 알림 발송
-                val message = createAlertMessage(alert)
+                val message = createAlertMessage(alert, stock)
                 notificationPort.send(alert, message)
 
                 // 알림 상태 업데이트
@@ -32,11 +37,9 @@ class StockPriceMonitoringService(
     }
 
     fun updateStockPrice(stockCode: String) {
-        val stock = stockRepository.findByStockCode(stockCode)
-            ?: throw IllegalArgumentException("Stock not found: $stockCode")
+        val stock = stockRepository.findByStockCode(stockCode) ?: throw IllegalArgumentException("Stock not found: $stockCode")
 
-        val currentPrice = stockDataPort.getCurrentPrice(stockCode)
-            ?: throw IllegalStateException("Failed to fetch price for: $stockCode")
+        val currentPrice = stockDataPort.getCurrentPrice(stockCode) ?: throw IllegalStateException("Failed to fetch price for: $stockCode")
 
         val event = stock.updatePrice(currentPrice)
         stockRepository.save(stock)
@@ -60,16 +63,16 @@ class StockPriceMonitoringService(
         stockRepository.saveAll(stocks)
     }
 
-    private fun handlePriceChangeEvent(event: sotck.stockalert.domain.stock.PriceChangeEvent) {
+    private fun handlePriceChangeEvent(event: PriceChangeEvent) {
         // 이벤트에 따른 추가 로직 처리
         // 예: 로그 기록, 실시간 알림 등
     }
 
-    private fun createAlertMessage(alert: sotck.stockalert.domain.alert.Alert): String {
+    private fun createAlertMessage(alert: Alert, stock: Stock): String {
         return """
             [주식 알림]
-            종목: ${alert.stock.stockName} (${alert.stock.stockCode})
-            현재가: ${alert.stock.currentPrice.value}원
+            종목: ${stock.stockName} (${stock.stockCode})
+            현재가: ${stock.currentPrice.value}원
             알림 유형: ${alert.alertType}
         """.trimIndent()
     }

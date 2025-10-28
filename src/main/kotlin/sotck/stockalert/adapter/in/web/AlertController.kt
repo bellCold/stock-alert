@@ -1,6 +1,5 @@
 package sotck.stockalert.adapter.`in`.web
 
-import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 import sotck.stockalert.application.service.AlertManagementService
 import sotck.stockalert.application.service.CreateAlertRequest
@@ -9,6 +8,7 @@ import sotck.stockalert.common.response.ApiResponse
 import sotck.stockalert.domain.alert.Alert
 import sotck.stockalert.domain.alert.AlertType
 import java.math.BigDecimal
+import java.time.LocalDateTime
 
 @RestController
 @RequestMapping("/api/v1/alerts")
@@ -36,18 +36,12 @@ class AlertController(private val alertManagementService: AlertManagementService
     }
 
     @DeleteMapping("/{alertId}")
-    fun deleteAlert(
-        @PathVariable alertId: Long,
-        @AuthUserId userId: Long
-    ) {
+    fun deleteAlert(@PathVariable alertId: Long, @AuthUserId userId: Long) {
         alertManagementService.deleteAlert(alertId, userId)
     }
 
     @PutMapping("/{alertId}/disable")
-    fun disableAlert(
-        @PathVariable alertId: Long,
-        @AuthUserId userId: Long
-    ): ApiResponse<Unit> {
+    fun disableAlert(@PathVariable alertId: Long, @AuthUserId userId: Long): ApiResponse<Unit> {
         alertManagementService.disableAlert(alertId, userId)
         return ApiResponse.success(Unit)
     }
@@ -63,24 +57,22 @@ data class CreateAlertApiRequest(
 
 data class AlertResponse(
     val id: Long?,
-    val stockCode: String,
-    val stockName: String,
+    val stockId: Long,
     val alertType: AlertType,
     val status: String,
     val targetPrice: BigDecimal?,
     val changeRateThreshold: BigDecimal?,
-    val createdAt: String,
-    val triggeredAt: String?
+    val createdAt: LocalDateTime,
+    val triggeredAt: LocalDateTime?
 )
 
 fun Alert.toResponse() = AlertResponse(
     id = this.id,
-    stockCode = this.stock.stockCode,
-    stockName = this.stock.stockName,
+    stockId = this.stockId,
     alertType = this.alertType,
     status = this.status.name,
     targetPrice = this.condition.targetPrice,
     changeRateThreshold = this.condition.changeRateThreshold,
-    createdAt = this.createdAt.toString(),
-    triggeredAt = this.triggeredAt?.toString()
+    createdAt = this.createdAt,
+    triggeredAt = this.triggeredAt
 )

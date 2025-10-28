@@ -11,12 +11,11 @@ class AlertTest {
     @Test
     fun `알림을 생성하면 ACTIVE 상태이다`() {
         // given
-        val stock = StockFixture.create()
         val condition = AlertConditionFixture.targetPriceAbove()
 
         // when
         val alert = Alert(
-            stock = stock,
+            stockId = 1L,
             userId = 1L,
             alertType = AlertType.TARGET_PRICE,
             condition = condition
@@ -32,10 +31,10 @@ class AlertTest {
         // given
         val stock = StockFixture.create(currentPrice = "65000")
         val condition = AlertConditionFixture.targetPriceAbove("60000")
-        val alert = AlertFixture.create(stock = stock, condition = condition)
+        val alert = AlertFixture.create(stockId = 1L, condition = condition)
 
         // when
-        val isSatisfied = alert.checkCondition()
+        val isSatisfied = alert.checkCondition(stock)
 
         // then
         assertThat(isSatisfied).isTrue()
@@ -46,10 +45,10 @@ class AlertTest {
         // given
         val stock = StockFixture.create(currentPrice = "55000")
         val condition = AlertConditionFixture.targetPriceAbove("60000")
-        val alert = AlertFixture.create(stock = stock, condition = condition)
+        val alert = AlertFixture.create(stockId = 1L, condition = condition)
 
         // when
-        val isSatisfied = alert.checkCondition()
+        val isSatisfied = alert.checkCondition(stock)
 
         // then
         assertThat(isSatisfied).isFalse()
@@ -60,10 +59,10 @@ class AlertTest {
         // given
         val stock = StockFixture.create(currentPrice = "55000")
         val condition = AlertConditionFixture.targetPriceBelow("60000")
-        val alert = AlertFixture.create(stock = stock, condition = condition)
+        val alert = AlertFixture.create(stockId = 1L, condition = condition)
 
         // when
-        val isSatisfied = alert.checkCondition()
+        val isSatisfied = alert.checkCondition(stock)
 
         // then
         assertThat(isSatisfied).isTrue()
@@ -74,10 +73,10 @@ class AlertTest {
         // given
         val stock = StockFixture.create(currentPrice = "65000")
         val condition = AlertConditionFixture.targetPriceBelow("60000")
-        val alert = AlertFixture.create(stock = stock, condition = condition)
+        val alert = AlertFixture.create(stockId = 1L, condition = condition)
 
         // when
-        val isSatisfied = alert.checkCondition()
+        val isSatisfied = alert.checkCondition(stock)
 
         // then
         assertThat(isSatisfied).isFalse()

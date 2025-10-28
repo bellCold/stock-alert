@@ -21,7 +21,7 @@ class LogNotificationAdapter : NotificationPort {
             알림 발송
             ========================================
             사용자 ID: ${alert.userId}
-            종목: ${alert.stock.stockName} (${alert.stock.stockCode})
+            Stock ID: ${alert.stockId}
             알림 유형: ${alert.alertType}
             메시지:
             $message
