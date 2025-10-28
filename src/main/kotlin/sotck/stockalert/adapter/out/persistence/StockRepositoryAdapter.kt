@@ -26,4 +26,8 @@ class StockRepositoryAdapter(private val stockJpaRepository: StockJpaRepository)
     override fun saveAll(stocks: List<Stock>): List<Stock> {
         return stockJpaRepository.saveAll(stocks)
     }
+
+    override fun deleteAll() {
+        stockJpaRepository.deleteAll()
+    }
 }

@@ -6,4 +6,5 @@ interface StockRepository {
     fun findAll(): List<Stock>
     fun save(stock: Stock): Stock
     fun saveAll(stocks: List<Stock>): List<Stock>
+    fun deleteAll()
 }

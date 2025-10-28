@@ -20,6 +20,8 @@ class Stock(
 
     val stockName: String,
 
+    val marketType: String,
+
     var currentPrice: Price,
 
     var highestPrice: Price

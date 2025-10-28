@@ -13,12 +13,14 @@ object StockFixture {
     fun create(
         stockCode: String = "005930",
         stockName: String = "삼성전자",
+        marketType: String = "KOSPI",
         currentPrice: String = "60000",
         highestPrice: String = currentPrice
     ): Stock {
         return Stock(
             stockCode = stockCode,
             stockName = stockName,
+            marketType = marketType,
             currentPrice = Price(BigDecimal(currentPrice)),
             highestPrice = Price(BigDecimal(highestPrice))
         )
