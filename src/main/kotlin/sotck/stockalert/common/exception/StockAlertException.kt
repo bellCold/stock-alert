@@ -34,3 +34,15 @@ class InvalidUserIdException(message: String = "Invalid or missing user ID") :
         message = message,
         errorCode = ErrorCode.INVALID_USER_ID
     )
+
+class UserAlreadyExistsException(email: String) :
+    StockAlertException(
+        message = "User already exists with email: $email",
+        errorCode = ErrorCode.USER_ALREADY_EXISTS
+    )
+
+class InvalidCredentialsException(message: String = "Invalid email or password") :
+    StockAlertException(
+        message = message,
+        errorCode = ErrorCode.INVALID_CREDENTIALS
+    )

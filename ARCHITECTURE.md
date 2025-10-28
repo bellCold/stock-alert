@@ -18,21 +18,24 @@ stock-alert/
 ├── domain/                           # 핵심 비즈니스 로직
 │   ├── BaseEntity.kt                 # JPA Auditing 기본 엔티티
 │   ├── stock/                        # 주식 도메인
-│   │   ├── Stock.kt                  # 주식 엔티티
-│   │   ├── Price.kt                  # 가격 값 객체
-│   │   ├── PriceChangeEvent.kt       # 가격 변동 이벤트
+│   │   ├── Stock.kt                  # 주식 엔티티 (가격 업데이트, 이벤트 발생)
+│   │   ├── Price.kt                  # 가격 값 객체 (0/음수 방어 로직)
+│   │   ├── PriceChangeEvent.kt       # 가격 변동 이벤트 (신고가/급등/급락)
 │   │   └── StockRepository.kt        # 저장소 인터페이스
-│   └── alert/                        # 알림 도메인
-│       ├── Alert.kt                  # 알림 엔티티
-│       ├── AlertType.kt              # 알림 타입
-│       ├── AlertStatus.kt            # 알림 상태
-│       ├── AlertCondition.kt         # 알림 조건
-│       └── AlertRepository.kt        # 저장소 인터페이스
+│   ├── alert/                        # 알림 도메인
+│   │   ├── Alert.kt                  # 알림 엔티티
+│   │   ├── AlertType.kt              # 알림 타입 (NEW_HIGH_PRICE, SURGE, FALL, etc)
+│   │   ├── AlertStatus.kt            # 알림 상태 (ACTIVE, INACTIVE, TRIGGERED)
+│   │   ├── AlertCondition.kt         # 알림 조건 (목표가, 변동률)
+│   │   └── AlertRepository.kt        # 저장소 인터페이스
+│   └── user/                         # 사용자 도메인
+│       ├── User.kt                   # 사용자 엔티티 (ACTIVE/INACTIVE)
+│       └── UserRepository.kt         # 저장소 인터페이스
 │
 ├── application/                      # 애플리케이션 서비스 계층
 │   ├── service/                      # Use Case 구현
-│   │   ├── StockPriceMonitoringService.kt
-│   │   └── AlertManagementService.kt
+│   │   ├── StockPriceMonitoringService.kt  # 주가 모니터링, 알림 체크
+│   │   └── AlertManagementService.kt       # 알림 CRUD 관리
 │   └── port/                         # 포트 정의
 │       └── out/                      # 아웃바운드 포트
 │           ├── StockDataPort.kt      # 외부 주식 데이터 API 포트
@@ -41,18 +44,20 @@ stock-alert/
 ├── adapter/                          # 어댑터 구현
 │   ├── in/                           # 인바운드 어댑터
 │   │   ├── web/                      # REST API
-│   │   │   ├── AlertController.kt
-│   │   │   └── StockController.kt
+│   │   │   ├── AlertController.kt    # 알림 API (/api/v1/alerts)
+│   │   │   └── StockController.kt    # 주식 API (/api/v1/stocks)
 │   │   └── scheduler/                # 스케줄러
-│   │       └── StockMonitoringScheduler.kt
+│   │       └── StockMonitoringScheduler.kt  # 주기적 가격 업데이트
 │   └── out/                          # 아웃바운드 어댑터
 │       ├── persistence/              # 데이터베이스
 │       │   ├── StockJpaRepository.kt
 │       │   ├── StockRepositoryAdapter.kt
 │       │   ├── AlertJpaRepository.kt
-│       │   └── AlertRepositoryAdapter.kt
+│       │   ├── AlertRepositoryAdapter.kt
+│       │   ├── UserJpaRepository.kt
+│       │   └── UserRepositoryAdapter.kt
 │       ├── api/                      # 외부 API 클라이언트
-│       │   └── KisApiClient.kt       # 한국투자증권 API
+│       │   └── NaverApiClient.kt     # Naver Finance API (WebClient 기반)
 │       └── notification/             # 알림 전송
 │           └── LogNotificationAdapter.kt
 │
@@ -61,14 +66,23 @@ stock-alert/
 │   ├── auth/                         # 인증/인가
 │   │   ├── AuthUserId.kt             # 사용자 ID 어노테이션
 │   │   └── AuthUserIdArgumentResolver.kt
+│   ├── ratelimit/                    # Rate Limiting
+│   │   ├── RateLimit.kt              # Rate Limit 어노테이션
+│   │   └── RateLimitInterceptor.kt   # Redis 기반 따닥 방지
+│   ├── logging/                      # 로깅
+│   │   └── LoggingFilter.kt          # 요청/응답 로깅, MDC 설정
+│   ├── response/                     # 공통 응답
+│   │   └── ApiResponse.kt            # 공통 API 응답 형식
 │   └── exception/                    # 예외 처리
-│       ├── StockAlertException.kt    # 커스텀 예외 계층
-│       ├── ErrorCode.kt              # 에러 코드 정의
-│       └── GlobalExceptionHandler.kt # 전역 예외 핸들러
+│       ├── StockAlertException.kt    # 커스텀 예외 계층 (Sealed class)
+│       ├── ErrorCode.kt              # 에러 코드 정의 (HTTP 상태, 로그 레벨)
+│       └── GlobalExceptionHandler.kt # 전역 예외 핸들러 (RFC 7807)
 │
 └── config/                           # 설정
     ├── JpaAuditingConfig.kt          # JPA Auditing 설정
-    ├── WebMvcConfig.kt               # Spring MVC 설정
+    ├── WebMvcConfig.kt               # ArgumentResolver, Interceptor 등록
+    ├── WebClientConfig.kt            # WebClient 설정 (Naver API)
+    ├── RedisConfig.kt                # Redis 설정 (Rate Limiting)
     ├── RestTemplateConfig.kt
     └── SchedulingConfig.kt
 ```
@@ -84,10 +98,11 @@ stock-alert/
   - JPA Auditing을 통한 자동 타임스탬프 관리
 - **주요 클래스**:
   - `BaseEntity`: createdAt/updatedAt 자동 관리
-  - `Stock`: 주식 엔티티, 가격 업데이트 및 이벤트 발생
-  - `Price`: 가격 값 객체, 가격 비교 로직 포함
+  - `Stock`: 주식 엔티티, 가격 업데이트 및 이벤트 발생, 급등/급락 감지
+  - `Price`: 가격 값 객체, 가격 비교 로직 포함, 0/음수 방어
   - `Alert`: 알림 엔티티, 조건 체크 로직 포함
   - `AlertCondition`: 알림 조건 값 객체
+  - `User`: 사용자 엔티티, 활성/비활성 상태 관리
 
 ### 2. Application Layer (애플리케이션 계층)
 - **역할**: Use Case 구현, 도메인 객체들의 조합
@@ -211,11 +226,17 @@ Spring MVC의 ArgumentResolver를 활용한 횡단 관심사 처리
 2. 새로운 Adapter 클래스 작성
 3. 설정 파일에서 전환 가능
 
+**현재 구현**: `NaverApiClient` (Naver Finance API, WebClient 기반)
+
 ```kotlin
 @Component
-class YahooFinanceAdapter : StockDataPort {
+class YahooFinanceAdapter(private val webClient: WebClient) : StockDataPort {
     override fun getCurrentPrice(stockCode: String): Price? {
         // Yahoo Finance API 호출
+    }
+
+    override fun getCurrentPrices(stockCodes: List<String>): Map<String, Price> {
+        // 배치 조회
     }
 }
 ```
@@ -238,9 +259,12 @@ class EmailNotificationAdapter : NotificationPort {
 - **Language**: Kotlin 1.9.25
 - **Framework**: Spring Boot 3.5.7
 - **Database**: MySQL 8.0
+- **Cache**: Redis (Rate Limiting)
 - **ORM**: Spring Data JPA
 - **Build Tool**: Gradle
 - **Java Version**: 21
+- **Async**: Kotlin Coroutines 1.8.0
+- **HTTP Client**: Spring WebFlux WebClient
 
 ## API 엔드포인트
 
@@ -257,8 +281,9 @@ class EmailNotificationAdapter : NotificationPort {
 
 ## 배경 작업 (Scheduler)
 
-- **주식 가격 업데이트**: 60초마다 실행 (설정 가능)
-- **알림 조건 체크**: 30초마다 실행 (설정 가능)
+- **주식 가격 업데이트**: 60초마다 실행 (설정: `monitoring.stock.update-interval`)
+- **알림 조건 체크**: 30초마다 실행 (설정: `monitoring.alert.check-interval`)
+- **구현**: `StockMonitoringScheduler.kt`
 
 ## 코드 품질 개선 사항
 
@@ -282,14 +307,47 @@ class EmailNotificationAdapter : NotificationPort {
 - **After**: `@AuthUserId userId: Long`
 - **이점**: 코드 간결화, 검증 로직 중앙화
 
+## 최근 개선 사항
+
+### 1. 안전한 가격 계산 로직 (Stock.kt:48-63)
+```kotlin
+private fun calculateChangeRate(oldPrice: Price, newPrice: Price): BigDecimal {
+    // oldPrice가 0이거나 음수면 변동률 계산 불가
+    if (oldPrice.value <= BigDecimal.ZERO) {
+        return BigDecimal.ZERO
+    }
+
+    // newPrice가 0이거나 음수면 변동률 계산 불가
+    if (newPrice.value <= BigDecimal.ZERO) {
+        return BigDecimal.ZERO
+    }
+
+    val priceDiff = newPrice.value - oldPrice.value
+    return priceDiff.divide(oldPrice.value, 10, RoundingMode.HALF_UP) * BigDecimal(100)
+}
+```
+- 0 또는 음수 가격에 대한 방어 로직
+- `compareTo` 대신 `<=` 연산자 사용 (간결성)
+- `BigDecimal` 정확한 계산, `RoundingMode` 명시
+
+### 2. Naver Finance API 연동 (NaverApiClient.kt)
+- WebClient 기반 비동기 HTTP 호출
+- 배치 조회 지원 (`getCurrentPrices`)
+- null-safe 처리, `runCatching`으로 에러 핸들링
+
+### 3. User 도메인 추가
+- 사용자 활성/비활성 상태 관리
+- Alert와 User 연동 (userId 필드)
+
 ## 향후 개선 사항
 
-1. **이벤트 소싱(Event Sourcing)**: 모든 가격 변동 이력 저장
-2. **CQRS**: 읽기/쓰기 모델 분리
-3. **Redis 캐싱**: 실시간 가격 데이터 캐싱
-4. **Kafka**: 대용량 이벤트 스트리밍
-5. **WebSocket**: 실시간 알림 푸시
-6. **멀티 모듈**: 도메인별 모듈 분리
-7. **테스트 자동화**: 단위/통합 테스트 작성
-8. **OpenAPI/Swagger**: API 문서 자동화
-9. **Spring Security**: 실제 인증/인가 구현
+1. **JWT 인증**: 현재 X-User-Id 헤더 → JWT 토큰 기반 인증
+2. **이벤트 소싱(Event Sourcing)**: 모든 가격 변동 이력 저장
+3. **CQRS**: 읽기/쓰기 모델 분리
+4. **Redis 캐싱**: 실시간 가격 데이터 캐싱 (현재는 Rate Limiting만 사용)
+5. **Kafka**: 대용량 이벤트 스트리밍
+6. **WebSocket**: 실시간 알림 푸시
+7. **멀티 모듈**: 도메인별 모듈 분리
+8. **테스트 자동화**: 단위/통합 테스트 작성
+9. **OpenAPI/Swagger**: API 문서 자동화
+10. **성능 최적화**: 코루틴 병렬 처리 ([PERFORMANCE_OPTIMIZATION.md](PERFORMANCE_OPTIMIZATION.md) 참고)

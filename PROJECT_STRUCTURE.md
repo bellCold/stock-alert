@@ -22,15 +22,20 @@
 ```
 📁 domain/ (도메인 계층 - 비즈니스 핵심)
   📁 stock/
-    📄 Stock.kt              ← 주식 엔티티 (가격 업데이트, 이벤트 발생)
-    📄 Price.kt              ← 가격 값 객체 (불변, 검증 로직)
+    📄 Stock.kt              ← 주식 엔티티 (가격 업데이트, 이벤트 발생, 급등/급락 감지)
+    📄 Price.kt              ← 가격 값 객체 (불변, 검증 로직, 0/음수 방어)
     📄 PriceChangeEvent.kt   ← 도메인 이벤트 (신고가, 급등, 급락)
     📄 StockRepository.kt    ← 인터페이스 (구현 없음!)
   📁 alert/
     📄 Alert.kt              ← 알림 엔티티 (조건 체크)
     📄 AlertCondition.kt     ← 알림 조건 로직
     📄 AlertType.kt          ← 알림 타입 정의
+    📄 AlertStatus.kt        ← 알림 상태 (ACTIVE, INACTIVE, TRIGGERED)
     📄 AlertRepository.kt    ← 인터페이스
+  📁 user/
+    📄 User.kt               ← 사용자 엔티티 (ACTIVE/INACTIVE)
+    📄 UserStatus.kt         ← 사용자 상태
+    📄 UserRepository.kt     ← 인터페이스
 
 📁 application/ (애플리케이션 계층 - Use Case)
   📁 service/
@@ -43,26 +48,30 @@
 📁 adapter/ (어댑터 계층 - 외부 세계 연결)
   📁 in/ (인바운드)
     📁 web/
-      📄 AlertController.kt     ← REST API
-      📄 StockController.kt
+      📄 AlertController.kt     ← REST API (POST, GET, DELETE, PUT /api/v1/alerts)
+      📄 StockController.kt     ← REST API (GET, POST /api/v1/stocks)
     📁 scheduler/
-      📄 StockMonitoringScheduler.kt  ← 주기적 작업
+      📄 StockMonitoringScheduler.kt  ← 주기적 작업 (60초마다 가격 업데이트)
   📁 out/ (아웃바운드)
     📁 persistence/
       📄 StockJpaRepository.kt        ← JPA 인터페이스
       📄 StockRepositoryAdapter.kt    ← Repository 구현
       📄 AlertJpaRepository.kt
       📄 AlertRepositoryAdapter.kt
+      📄 UserJpaRepository.kt
+      📄 UserRepositoryAdapter.kt
     📁 api/
-      📄 KisApiClient.kt              ← 한국투자증권 API
+      📄 NaverApiClient.kt            ← Naver Finance API (WebClient 기반)
     📁 notification/
       📄 LogNotificationAdapter.kt    ← 알림 전송 구현
 
 📁 config/
+  📄 JpaAuditingConfig.kt      ← JPA Auditing 설정 (BaseEntity)
   📄 RestTemplateConfig.kt
   📄 SchedulingConfig.kt
   📄 WebMvcConfig.kt           ← Interceptor 및 ArgumentResolver 등록
-  📄 RedisConfig.kt            ← Redis 설정
+  📄 WebClientConfig.kt        ← WebClient 설정 (Naver API)
+  📄 RedisConfig.kt            ← Redis 설정 (Rate Limiting)
 
 📁 common/ (공통 기능)
   📁 auth/
@@ -123,11 +132,17 @@
 
 ### 3️⃣ 알림 발송 흐름
 ```
-[스케줄러]
+[스케줄러] (60초마다)
     ↓
-[StockPriceMonitoringService.checkAndNotifyAlerts()]
+[StockPriceMonitoringService]
     ↓
-[Alert.checkCondition()] ← 도메인 로직
+[NaverApiClient] → [Naver Finance API] (가격 조회)
+    ↓
+[Stock.updatePrice()] ← 도메인 로직 (급등/급락 감지)
+    ↓
+[PriceChangeEvent 발생]
+    ↓
+[Alert.checkCondition()] ← 도메인 로직 (조건 체크)
     ↓ (조건 만족 시)
 [NotificationPort] → [LogNotificationAdapter]
     ↓
@@ -141,12 +156,18 @@
 // 1. Port는 이미 정의되어 있음 (StockDataPort)
 // 2. 새 Adapter만 추가
 @Component
-class YahooFinanceAdapter : StockDataPort {
+class YahooFinanceAdapter(private val webClient: WebClient) : StockDataPort {
     override fun getCurrentPrice(stockCode: String): Price? {
         // Yahoo Finance API 호출
     }
+
+    override fun getCurrentPrices(stockCodes: List<String>): Map<String, Price> {
+        // 배치 조회
+    }
 }
 ```
+
+**현재 구현**: `NaverApiClient` (Naver Finance API 사용)
 
 ### 🔧 새로운 알림 타입 추가
 ```kotlin
@@ -234,21 +255,28 @@ export KIS_APP_KEY=your-app-key
 export KIS_APP_SECRET=your-app-secret
 ```
 
-## 다음 단계
+## 개발 현황
 
-1. ✅ 도메인 모델 설계 완료
-2. ✅ 헥사고날 아키텍처 구조 완료
-3. ✅ REST API 엔드포인트 완료
-4. ✅ 공통 예외 처리 (GlobalExceptionHandler)
-5. ✅ 공통 API 응답 형식 (ApiResponse)
-6. ✅ 로깅 필터 (LoggingFilter, MDC)
-7. ✅ 사용자 인증 (AuthUserId, ArgumentResolver)
-8. ✅ Rate Limiting (Redis 기반, 다중 서버 지원)
-9. ⏳ 실제 API 연동 테스트
-10. ⏳ 단위/통합 테스트 작성
-11. ⏳ 인증/인가 구현 (JWT)
-12. ⏳ WebSocket 실시간 알림
-13. ⏳ Redis 캐싱 추가
+### 완료된 기능
+1. ✅ 도메인 모델 설계 (Stock, Alert, User)
+2. ✅ 헥사고날 아키텍처 구조
+3. ✅ REST API 엔드포인트
+4. ✅ Naver Finance API 연동 (WebClient)
+5. ✅ 공통 예외 처리 (GlobalExceptionHandler, RFC 7807)
+6. ✅ 공통 API 응답 형식 (ApiResponse)
+7. ✅ 로깅 필터 (LoggingFilter, MDC)
+8. ✅ 사용자 인증 (AuthUserId, ArgumentResolver)
+9. ✅ Rate Limiting (Redis 기반, 다중 서버 지원)
+10. ✅ 안전한 가격 계산 (0/음수 방어 로직)
+11. ✅ 스케줄러 (주기적 가격 업데이트)
+
+### 향후 계획
+1. ⏳ 단위/통합 테스트 작성
+2. ⏳ JWT 기반 인증/인가 구현
+3. ⏳ WebSocket 실시간 알림
+4. ⏳ Redis 캐싱 (주가 데이터)
+5. ⏳ 성능 최적화 (코루틴 병렬 처리)
+6. ⏳ 이벤트 소싱 (가격 이력 저장)
 
 ## 주요 기능
 

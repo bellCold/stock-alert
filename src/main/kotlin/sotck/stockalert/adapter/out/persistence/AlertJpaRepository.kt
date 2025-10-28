@@ -1,7 +1,6 @@
 package sotck.stockalert.adapter.out.persistence
 
 import org.springframework.data.jpa.repository.JpaRepository
-import org.springframework.data.jpa.repository.Query
 import sotck.stockalert.domain.alert.Alert
 import sotck.stockalert.domain.alert.AlertStatus
 

@@ -15,7 +15,11 @@ enum class ErrorCode(
     ALERT_NOT_FOUND(status = HttpStatus.NOT_FOUND, code = "ALERT-2001", message = "Alert not found", logLevel = LogLevel.WARN),
     UNAUTHORIZED_ALERT_ACCESS(status = HttpStatus.FORBIDDEN, code = "ALERT-2002", message = "Unauthorized alert access", logLevel = LogLevel.WARN),
     INVALID_ALERT_CONDITION(status = HttpStatus.BAD_REQUEST, code = "ALERT-2003", message = "Invalid alert condition", logLevel = LogLevel.WARN),
+
+    // AUTH
     INVALID_USER_ID(status = HttpStatus.UNAUTHORIZED, code = "AUTH-3001", message = "Invalid or missing user ID", logLevel = LogLevel.WARN),
+    USER_ALREADY_EXISTS(status = HttpStatus.CONFLICT, code = "AUTH-3002", message = "User already exists", logLevel = LogLevel.WARN),
+    INVALID_CREDENTIALS(status = HttpStatus.UNAUTHORIZED, code = "AUTH-3003", message = "Invalid credentials", logLevel = LogLevel.WARN),
 
     // COMMON
     INTERNAL_SERVER_ERROR(status = HttpStatus.INTERNAL_SERVER_ERROR, code = "COMMON-9001", message = "Internal server error", logLevel = LogLevel.ERROR),

@@ -1,6 +1,7 @@
 package sotck.stockalert.common.auth
 
 import org.springframework.core.MethodParameter
+import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Component
 import org.springframework.web.bind.support.WebDataBinderFactory
 import org.springframework.web.context.request.NativeWebRequest
@@ -21,12 +22,10 @@ class AuthUserIdArgumentResolver : HandlerMethodArgumentResolver {
         webRequest: NativeWebRequest,
         binderFactory: WebDataBinderFactory?
     ): Long {
-        val userId = webRequest.getHeader(USER_ID_HEADER) ?: throw InvalidUserIdException("X-User-Id header is required")
+        val authentication = SecurityContextHolder.getContext().authentication ?: throw InvalidUserIdException("Authentication required")
 
-        return userId.toLongOrNull() ?: throw InvalidUserIdException("X-User-Id header must be a valid number")
-    }
+        val userId = authentication.principal as? Long ?: throw InvalidUserIdException("Invalid user ID in authentication")
 
-    companion object {
-        private const val USER_ID_HEADER = "X-User-Id"
+        return userId
     }
 }
