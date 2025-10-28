@@ -3,6 +3,7 @@ package sotck.stockalert.domain.stock
 import jakarta.persistence.*
 import sotck.stockalert.domain.BaseEntity
 import java.math.BigDecimal
+import java.math.RoundingMode
 
 @Entity
 @Table(
@@ -46,7 +47,12 @@ class Stock(
     }
 
     private fun calculateChangeRate(oldPrice: Price, newPrice: Price): BigDecimal {
-        return ((newPrice.value - oldPrice.value).divide(oldPrice.value, 10, java.math.RoundingMode.HALF_UP)) * BigDecimal(100)
+        if (oldPrice.value <= BigDecimal.ZERO || newPrice.value <= BigDecimal.ZERO) {
+            return BigDecimal.ZERO
+        }
+
+        val priceDiff = newPrice.value - oldPrice.value
+        return priceDiff.divide(oldPrice.value, 10, RoundingMode.HALF_UP) * BigDecimal(100)
     }
 
     companion object {

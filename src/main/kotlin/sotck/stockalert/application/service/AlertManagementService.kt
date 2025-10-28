@@ -2,7 +2,6 @@ package sotck.stockalert.application.service
 
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import sotck.stockalert.common.exception.AlertNotFoundException
 import sotck.stockalert.common.exception.StockNotFoundException
 import sotck.stockalert.common.exception.UnauthorizedAlertAccessException
 import sotck.stockalert.domain.alert.Alert
@@ -46,18 +45,15 @@ class AlertManagementService(private val alertRepository: AlertRepository, priva
     }
 
     fun disableAlert(alertId: Long, userId: Long) {
-        val alert = alertRepository.findByUserId(userId)
-            .firstOrNull { it.id == alertId }
-            ?: throw UnauthorizedAlertAccessException(alertId, userId)
+        val alert = alertRepository.findByUserId(userId).firstOrNull { it.id == alertId } ?: throw UnauthorizedAlertAccessException(alertId, userId)
 
         alert.disable()
+
         alertRepository.save(alert)
     }
 
     fun deleteAlert(alertId: Long, userId: Long) {
-        val alert = alertRepository.findByUserId(userId)
-            .firstOrNull { it.id == alertId }
-            ?: throw UnauthorizedAlertAccessException(alertId, userId)
+        val alert = alertRepository.findByUserId(userId).firstOrNull { it.id == alertId } ?: throw UnauthorizedAlertAccessException(alertId, userId)
 
         alertRepository.delete(alert)
     }
