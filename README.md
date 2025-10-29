@@ -28,8 +28,9 @@
 - **Language**: Kotlin 1.9.25
 - **Framework**: Spring Boot 3.5.7
 - **Database**: MySQL 8.0
-- **Cache**: Redis (Rate Limiting)
+- **Cache**: Redis (Rate Limiting, JWT Refresh Token)
 - **ORM**: Spring Data JPA
+- **Security**: Spring Security + JWT
 - **Java Version**: 21
 - **Async**: Kotlin Coroutines 1.8.0
 - **HTTP Client**: Spring WebFlux WebClient
@@ -60,10 +61,11 @@ stock-alert/
 │
 ├── adapter/                         # 어댑터 구현
 │   ├── in/
-│   │   ├── web/                     # REST API
+│   │   ├── web/                     # REST API (AlertController, AuthController)
 │   │   └── scheduler/               # 스케줄러
 │   └── out/
 │       ├── persistence/             # JPA Repository
+│       ├── cache/                   # Redis Repository (RefreshToken)
 │       ├── api/                     # 외부 API 클라이언트
 │       │   └── NaverApiClient.kt    # Naver Finance API
 │       └── notification/            # 알림 전송
@@ -76,8 +78,10 @@ stock-alert/
 │   └── response/                    # 공통 응답 형식
 │
 └── config/                          # 설정
+    ├── SecurityConfig.kt            # Spring Security + JWT 설정
+    ├── JpaConfig.kt                 # JPA Repository 스캔 설정
+    ├── RedisConfig.kt               # Redis Repository 스캔 설정
     ├── WebClientConfig.kt           # WebClient 설정
-    ├── RedisConfig.kt               # Redis 설정
     └── WebMvcConfig.kt              # ArgumentResolver 등록
 ```
 
@@ -158,6 +162,11 @@ stock-alert/
 
 ## API 엔드포인트
 
+### 인증
+- `POST /api/v1/auth/signup` - 회원가입
+- `POST /api/v1/auth/signin` - 로그인 (Access Token + Refresh Token 발급)
+- `POST /api/v1/auth/refresh` - Access Token 갱신
+
 ### 알림 관리
 - `POST /api/v1/alerts` - 알림 생성
 - `GET /api/v1/alerts` - 사용자 알림 목록 조회
@@ -169,7 +178,7 @@ stock-alert/
 - `POST /api/v1/stocks/{stockCode}/refresh` - 주식 가격 갱신
 - `GET /api/v1/stocks` - 전체 주식 목록 조회
 
-모든 API는 `X-User-Id` 헤더를 통한 사용자 인증이 필요합니다.
+대부분의 API는 `Authorization: Bearer {token}` 헤더를 통한 JWT 인증이 필요합니다.
 
 ## 주요 설계 특징
 
@@ -204,15 +213,16 @@ stock-alert/
 - ✅ 헥사고날 아키텍처 구조 설계
 - ✅ 도메인 모델 설계 (Stock, Alert, User)
 - ✅ REST API 엔드포인트
+- ✅ JWT 기반 인증/인가 (Spring Security)
+- ✅ Redis Repository (Refresh Token 저장)
 - ✅ Naver Finance API 연동 (WebClient)
 - ✅ 스케줄러를 통한 주기적 가격 업데이트
 - ✅ Redis 기반 Rate Limiting
-- ✅ 로깅 필터 (MDC, Correlation ID)
+- ✅ 로깅 필터 (MDC, Correlation ID, 조건부 출력)
 - ✅ 전역 예외 처리 (GlobalExceptionHandler)
-- ✅ 사용자 인증 (AuthUserId ArgumentResolver)
+- ✅ Repository 스캔 범위 명시 (JPA/Redis 분리)
 
 ### 향후 개선 사항
-- [ ] JWT 기반 실제 인증/인가 구현
 - [ ] 알림 전송 기능 (이메일, SMS, Push)
 - [ ] WebSocket 실시간 알림
 - [ ] Redis 캐싱 (주가 데이터)
