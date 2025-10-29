@@ -62,16 +62,21 @@
       📄 UserRepositoryAdapter.kt
     📁 api/
       📄 NaverApiClient.kt            ← Naver Finance API (WebClient 기반)
+    📁 cache/
+      📄 RefreshToken.kt              ← Refresh Token 엔티티 (@RedisHash)
+      📄 RefreshTokenRepository.kt    ← Redis Repository
     📁 notification/
       📄 LogNotificationAdapter.kt    ← 알림 전송 구현
 
 📁 config/
+  📄 SecurityConfig.kt         ← Spring Security + JWT 설정
+  📄 JpaConfig.kt              ← JPA Repository 스캔 설정 (persistence)
   📄 JpaAuditingConfig.kt      ← JPA Auditing 설정 (BaseEntity)
+  📄 RedisConfig.kt            ← Redis Repository 스캔 설정 (cache)
   📄 RestTemplateConfig.kt
   📄 SchedulingConfig.kt
   📄 WebMvcConfig.kt           ← Interceptor 및 ArgumentResolver 등록
   📄 WebClientConfig.kt        ← WebClient 설정 (Naver API)
-  📄 RedisConfig.kt            ← Redis 설정 (Rate Limiting)
 
 📁 common/ (공통 기능)
   📁 auth/
@@ -261,22 +266,23 @@ export KIS_APP_SECRET=your-app-secret
 1. ✅ 도메인 모델 설계 (Stock, Alert, User)
 2. ✅ 헥사고날 아키텍처 구조
 3. ✅ REST API 엔드포인트
-4. ✅ Naver Finance API 연동 (WebClient)
-5. ✅ 공통 예외 처리 (GlobalExceptionHandler, RFC 7807)
-6. ✅ 공통 API 응답 형식 (ApiResponse)
-7. ✅ 로깅 필터 (LoggingFilter, MDC)
-8. ✅ 사용자 인증 (AuthUserId, ArgumentResolver)
-9. ✅ Rate Limiting (Redis 기반, 다중 서버 지원)
-10. ✅ 안전한 가격 계산 (0/음수 방어 로직)
-11. ✅ 스케줄러 (주기적 가격 업데이트)
+4. ✅ JWT 기반 인증/인가 (Spring Security)
+5. ✅ Redis Repository (Refresh Token 저장)
+6. ✅ Naver Finance API 연동 (WebClient)
+7. ✅ 공통 예외 처리 (GlobalExceptionHandler, RFC 7807)
+8. ✅ 공통 API 응답 형식 (ApiResponse)
+9. ✅ 로깅 필터 (LoggingFilter, MDC, 조건부 출력)
+10. ✅ Repository 스캔 분리 (JPA/Redis)
+11. ✅ Rate Limiting (Redis 기반, 다중 서버 지원)
+12. ✅ 안전한 가격 계산 (0/음수 방어 로직)
+13. ✅ 스케줄러 (주기적 가격 업데이트)
 
 ### 향후 계획
 1. ⏳ 단위/통합 테스트 작성
-2. ⏳ JWT 기반 인증/인가 구현
-3. ⏳ WebSocket 실시간 알림
-4. ⏳ Redis 캐싱 (주가 데이터)
-5. ⏳ 성능 최적화 (코루틴 병렬 처리)
-6. ⏳ 이벤트 소싱 (가격 이력 저장)
+2. ⏳ WebSocket 실시간 알림
+3. ⏳ Redis 캐싱 (주가 데이터)
+4. ⏳ 성능 최적화 (코루틴 병렬 처리)
+5. ⏳ 이벤트 소싱 (가격 이력 저장)
 
 ## 주요 기능
 
@@ -292,9 +298,16 @@ export KIS_APP_SECRET=your-app-secret
 - MDC를 통한 Correlation ID 추적
 - 사용자 ID 컨텍스트 전파
 - 요청 시간 측정
+- 조건부 MDC 출력 (값이 있을 때만 표시)
 
 ### ✅ 예외 처리
 - 전역 예외 핸들러
 - RFC 7807 Problem Details 형식
 - 에러 코드 체계화
 - 로그 레벨 자동 분류
+
+### ✅ 인증/인가
+- JWT 기반 Stateless 인증
+- Access Token (1시간) + Refresh Token (7일)
+- Refresh Token은 Redis에 저장 (자동 TTL 관리)
+- Spring Security Filter Chain 적용

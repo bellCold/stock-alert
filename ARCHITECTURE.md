@@ -58,6 +58,9 @@ stock-alert/
 │       │   └── UserRepositoryAdapter.kt
 │       ├── api/                      # 외부 API 클라이언트
 │       │   └── NaverApiClient.kt     # Naver Finance API (WebClient 기반)
+│       ├── cache/                    # Redis Repository
+│       │   ├── RefreshToken.kt       # Refresh Token 엔티티 (@RedisHash)
+│       │   └── RefreshTokenRepository.kt  # Redis Repository
 │       └── notification/             # 알림 전송
 │           └── LogNotificationAdapter.kt
 │
@@ -79,10 +82,12 @@ stock-alert/
 │       └── GlobalExceptionHandler.kt # 전역 예외 핸들러 (RFC 7807)
 │
 └── config/                           # 설정
+    ├── SecurityConfig.kt             # Spring Security + JWT 설정
+    ├── JpaConfig.kt                  # JPA Repository 스캔 (persistence 패키지)
     ├── JpaAuditingConfig.kt          # JPA Auditing 설정
+    ├── RedisConfig.kt                # Redis Repository 스캔 (cache 패키지)
     ├── WebMvcConfig.kt               # ArgumentResolver, Interceptor 등록
     ├── WebClientConfig.kt            # WebClient 설정 (Naver API)
-    ├── RedisConfig.kt                # Redis 설정 (Rate Limiting)
     ├── RestTemplateConfig.kt
     └── SchedulingConfig.kt
 ```
@@ -259,8 +264,9 @@ class EmailNotificationAdapter : NotificationPort {
 - **Language**: Kotlin 1.9.25
 - **Framework**: Spring Boot 3.5.7
 - **Database**: MySQL 8.0
-- **Cache**: Redis (Rate Limiting)
-- **ORM**: Spring Data JPA
+- **Cache**: Redis (Rate Limiting, JWT Refresh Token)
+- **Security**: Spring Security + JWT
+- **ORM**: Spring Data JPA + Spring Data Redis
 - **Build Tool**: Gradle
 - **Java Version**: 21
 - **Async**: Kotlin Coroutines 1.8.0
@@ -268,13 +274,18 @@ class EmailNotificationAdapter : NotificationPort {
 
 ## API 엔드포인트
 
-### 알림 관리
+### 인증 (Public)
+- `POST /api/v1/auth/signup` - 회원가입
+- `POST /api/v1/auth/signin` - 로그인 (JWT 발급)
+- `POST /api/v1/auth/refresh` - Access Token 갱신
+
+### 알림 관리 (인증 필요)
 - `POST /api/v1/alerts` - 알림 생성
 - `GET /api/v1/alerts` - 사용자 알림 목록 조회
 - `DELETE /api/v1/alerts/{alertId}` - 알림 삭제
 - `PUT /api/v1/alerts/{alertId}/disable` - 알림 비활성화
 
-### 주식 정보
+### 주식 정보 (인증 필요)
 - `GET /api/v1/stocks/{stockCode}` - 주식 정보 조회
 - `POST /api/v1/stocks/{stockCode}/refresh` - 주식 가격 갱신
 - `GET /api/v1/stocks` - 전체 주식 목록 조회
@@ -339,15 +350,73 @@ private fun calculateChangeRate(oldPrice: Price, newPrice: Price): BigDecimal {
 - 사용자 활성/비활성 상태 관리
 - Alert와 User 연동 (userId 필드)
 
+## 최근 구현 사항
+
+### 1. JWT 인증/인가 시스템
+```kotlin
+// SecurityConfig.kt
+@Configuration
+@EnableWebSecurity
+class SecurityConfig(private val jwtAuthenticationFilter: JwtAuthenticationFilter) {
+    @Bean
+    fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
+        http
+            .csrf { it.disable() }
+            .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
+            .authorizeHttpRequests { auth ->
+                auth
+                    .requestMatchers(HttpMethod.POST, "/api/v1/auth/**").permitAll()
+                    .anyRequest().authenticated()
+            }
+            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter::class.java)
+        return http.build()
+    }
+}
+```
+
+**특징:**
+- Stateless JWT 인증 (세션 없음)
+- Access Token (1시간) + Refresh Token (7일)
+- Refresh Token은 Redis에 저장 (TTL 자동 관리)
+
+### 2. Redis Repository 활용
+```kotlin
+@RedisHash(value = "refreshToken")
+data class RefreshToken(
+    @Id val userId: Long,
+    val token: String,
+    @TimeToLive(unit = TimeUnit.SECONDS)
+    val ttl: Long = 604800 // 7일
+)
+
+@Repository
+interface RefreshTokenRepository : CrudRepository<RefreshToken, Long>
+```
+
+**Repository 분리:**
+- JPA: `adapter.out.persistence` 패키지
+- Redis: `adapter.out.cache` 패키지
+- 명시적 스캔 범위 지정으로 충돌 방지
+
+### 3. 로깅 패턴 개선
+```yaml
+# logback-spring.xml
+<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %X{correlationId:-} %X{userId:-} %-5level %logger{36} - %msg%n</pattern>
+```
+
+**개선 사항:**
+- MDC 값이 없을 때 기본값 표시 안 함
+- 요청이 있을 때만 correlationId, userId 출력
+- 깔끔한 로그 출력
+
 ## 향후 개선 사항
 
-1. **JWT 인증**: 현재 X-User-Id 헤더 → JWT 토큰 기반 인증
-2. **이벤트 소싱(Event Sourcing)**: 모든 가격 변동 이력 저장
-3. **CQRS**: 읽기/쓰기 모델 분리
-4. **Redis 캐싱**: 실시간 가격 데이터 캐싱 (현재는 Rate Limiting만 사용)
-5. **Kafka**: 대용량 이벤트 스트리밍
-6. **WebSocket**: 실시간 알림 푸시
-7. **멀티 모듈**: 도메인별 모듈 분리
-8. **테스트 자동화**: 단위/통합 테스트 작성
-9. **OpenAPI/Swagger**: API 문서 자동화
-10. **성능 최적화**: 코루틴 병렬 처리 ([PERFORMANCE_OPTIMIZATION.md](PERFORMANCE_OPTIMIZATION.md) 참고)
+1. **이벤트 소싱(Event Sourcing)**: 모든 가격 변동 이력 저장
+2. **CQRS**: 읽기/쓰기 모델 분리
+3. **Redis 캐싱**: 실시간 가격 데이터 캐싱
+4. **Kafka**: 대용량 이벤트 스트리밍
+5. **WebSocket**: 실시간 알림 푸시
+6. **멀티 모듈**: 도메인별 모듈 분리
+7. **테스트 자동화**: 단위/통합 테스트 작성
+8. **OpenAPI/Swagger**: API 문서 자동화
+9. **성능 최적화**: 코루틴 병렬 처리 ([PERFORMANCE_OPTIMIZATION.md](PERFORMANCE_OPTIMIZATION.md) 참고)
