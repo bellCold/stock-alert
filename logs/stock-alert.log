@@ -1,0 +1,176 @@
+2025-10-30 00:02:33.932 [SpringApplicationShutdownHook]   INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-30 00:02:33.935 [tomcat-shutdown]   INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-10-30 00:02:33.951 [SpringApplicationShutdownHook]   INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-30 00:02:33.952 [SpringApplicationShutdownHook]   INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-10-30 00:02:33.956 [SpringApplicationShutdownHook]   INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-10-30 00:02:35.672 [main]   INFO  s.stockalert.StockAlertApplicationKt - Starting StockAlertApplicationKt using Java 21.0.6 with PID 17730 (/Users/bellcold/study/stock-alert/build/classes/kotlin/main started by bellcold in /Users/bellcold/study/stock-alert)
+2025-10-30 00:02:35.673 [main]   DEBUG s.stockalert.StockAlertApplicationKt - Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-10-30 00:02:35.673 [main]   INFO  s.stockalert.StockAlertApplicationKt - No active profile set, falling back to 1 default profile: "default"
+2025-10-30 00:02:35.943 [main]   INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-30 00:02:35.943 [main]   INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-30 00:02:35.993 [main]   INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 45 ms. Found 3 JPA repository interfaces.
+2025-10-30 00:02:35.994 [main]   INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-30 00:02:35.994 [main]   INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-10-30 00:02:35.999 [main]   INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 2 ms. Found 1 Redis repository interface.
+2025-10-30 00:02:36.340 [main]   INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-10-30 00:02:36.346 [main]   INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-10-30 00:02:36.346 [main]   INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-10-30 00:02:36.362 [main]   INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-10-30 00:02:36.363 [main]   INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 660 ms
+2025-10-30 00:02:36.387 [main]   DEBUG s.s.c.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-10-30 00:02:36.387 [main]   DEBUG s.s.common.logging.LoggingFilter - Filter 'loggingFilter' configured for use
+2025-10-30 00:02:36.432 [main]   INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-30 00:02:36.452 [main]   INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-10-30 00:02:36.463 [main]   INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-10-30 00:02:36.577 [main]   INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-30 00:02:36.590 [main]   INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-10-30 00:02:36.661 [main]   INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@b04a6a4
+2025-10-30 00:02:36.661 [main]   INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-10-30 00:02:37.019 [main]   INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-30 00:02:37.043 [main]   INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-30 00:02:37.373 [main]   ERROR i.n.r.d.DnsServerAddressStreamProviders - Unable to load io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'. Use DEBUG level to see the full stack: java.lang.UnsatisfiedLinkError: failed to load the required native library
+2025-10-30 00:02:37.708 [main]   INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-10-30 00:02:37.712 [main]   INFO  s.stockalert.StockAlertApplicationKt - Started StockAlertApplicationKt in 2.254 seconds (process running for 2.637)
+2025-10-30 00:05:09.832 [SpringApplicationShutdownHook]   INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-30 00:05:09.833 [tomcat-shutdown]   INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-10-30 00:05:09.845 [SpringApplicationShutdownHook]   INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-30 00:05:09.846 [SpringApplicationShutdownHook]   INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-10-30 00:05:09.848 [SpringApplicationShutdownHook]   INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-10-30 00:05:11.117 [main]   INFO  s.stockalert.StockAlertApplicationKt - Starting StockAlertApplicationKt using Java 21.0.6 with PID 17950 (/Users/bellcold/study/stock-alert/build/classes/kotlin/main started by bellcold in /Users/bellcold/study/stock-alert)
+2025-10-30 00:05:11.117 [main]   DEBUG s.stockalert.StockAlertApplicationKt - Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-10-30 00:05:11.118 [main]   INFO  s.stockalert.StockAlertApplicationKt - No active profile set, falling back to 1 default profile: "default"
+2025-10-30 00:05:11.359 [main]   INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-30 00:05:11.360 [main]   INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-30 00:05:11.412 [main]   INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 47 ms. Found 3 JPA repository interfaces.
+2025-10-30 00:05:11.414 [main]   INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-30 00:05:11.414 [main]   INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-10-30 00:05:11.420 [main]   INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 2 ms. Found 1 Redis repository interface.
+2025-10-30 00:05:11.758 [main]   INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-10-30 00:05:11.764 [main]   INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-10-30 00:05:11.764 [main]   INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-10-30 00:05:11.780 [main]   INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-10-30 00:05:11.780 [main]   INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 644 ms
+2025-10-30 00:05:11.802 [main]   DEBUG s.s.c.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-10-30 00:05:11.802 [main]   DEBUG s.s.common.logging.LoggingFilter - Filter 'loggingFilter' configured for use
+2025-10-30 00:05:11.846 [main]   INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-30 00:05:11.863 [main]   INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-10-30 00:05:11.874 [main]   INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-10-30 00:05:11.987 [main]   INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-30 00:05:12.000 [main]   INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-10-30 00:05:12.078 [main]   INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@cc7909f
+2025-10-30 00:05:12.079 [main]   INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-10-30 00:05:12.434 [main]   INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-30 00:05:12.459 [main]   INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-30 00:05:12.803 [main]   ERROR i.n.r.d.DnsServerAddressStreamProviders - Unable to load io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'. Use DEBUG level to see the full stack: java.lang.UnsatisfiedLinkError: failed to load the required native library
+2025-10-30 00:05:13.139 [main]   INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-10-30 00:05:13.143 [main]   INFO  s.stockalert.StockAlertApplicationKt - Started StockAlertApplicationKt in 2.23 seconds (process running for 2.603)
+2025-10-30 00:05:30.775 [SpringApplicationShutdownHook]   INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-30 00:05:30.777 [tomcat-shutdown]   INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-10-30 00:05:30.792 [SpringApplicationShutdownHook]   INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-30 00:05:30.793 [SpringApplicationShutdownHook]   INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-10-30 00:05:30.796 [SpringApplicationShutdownHook]   INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-10-30 00:46:37.598 [main]   INFO  s.stockalert.StockAlertApplicationKt - Starting StockAlertApplicationKt using Java 21.0.6 with PID 20524 (/Users/bellcold/study/stock-alert/build/classes/kotlin/main started by bellcold in /Users/bellcold/study/stock-alert)
+2025-10-30 00:46:37.599 [main]   DEBUG s.stockalert.StockAlertApplicationKt - Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-10-30 00:46:37.599 [main]   INFO  s.stockalert.StockAlertApplicationKt - No active profile set, falling back to 1 default profile: "default"
+2025-10-30 00:46:37.842 [main]   INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-30 00:46:37.842 [main]   INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-30 00:46:37.895 [main]   INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 47 ms. Found 3 JPA repository interfaces.
+2025-10-30 00:46:37.896 [main]   INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-30 00:46:37.897 [main]   INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-10-30 00:46:37.905 [main]   INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 2 ms. Found 1 Redis repository interface.
+2025-10-30 00:46:38.266 [main]   INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-10-30 00:46:38.272 [main]   INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-10-30 00:46:38.272 [main]   INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-10-30 00:46:38.289 [main]   INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-10-30 00:46:38.289 [main]   INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 673 ms
+2025-10-30 00:46:38.316 [main]   DEBUG s.s.c.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-10-30 00:46:38.316 [main]   DEBUG s.s.common.logging.LoggingFilter - Filter 'loggingFilter' configured for use
+2025-10-30 00:46:38.366 [main]   INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-30 00:46:38.390 [main]   INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-10-30 00:46:38.404 [main]   INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-10-30 00:46:38.529 [main]   INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-30 00:46:38.541 [main]   INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-10-30 00:46:38.613 [main]   INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2a9565d7
+2025-10-30 00:46:38.613 [main]   INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-10-30 00:46:38.995 [main]   INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-30 00:46:39.023 [main]   DEBUG org.hibernate.SQL - 
+    alter table users 
+       drop index uk_user_email
+2025-10-30 00:46:39.225 [main]   DEBUG org.hibernate.SQL - 
+    alter table users 
+       add constraint uk_user_email unique (email)
+2025-10-30 00:46:39.244 [main]   INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-30 00:46:39.599 [main]   ERROR i.n.r.d.DnsServerAddressStreamProviders - Unable to load io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'. Use DEBUG level to see the full stack: java.lang.UnsatisfiedLinkError: failed to load the required native library
+2025-10-30 00:46:39.934 [main]   INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-10-30 00:46:39.938 [main]   INFO  s.stockalert.StockAlertApplicationKt - Started StockAlertApplicationKt in 2.544 seconds (process running for 3.007)
+2025-10-30 00:46:50.564 [SpringApplicationShutdownHook]   INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-30 00:46:50.565 [tomcat-shutdown]   INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-10-30 00:46:50.577 [SpringApplicationShutdownHook]   INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-30 00:46:50.578 [SpringApplicationShutdownHook]   INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-10-30 00:46:50.580 [SpringApplicationShutdownHook]   INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-10-30 00:46:52.936 [main]   INFO  s.stockalert.StockAlertApplicationKt - Starting StockAlertApplicationKt using Java 21.0.6 with PID 20544 (/Users/bellcold/study/stock-alert/build/classes/kotlin/main started by bellcold in /Users/bellcold/study/stock-alert)
+2025-10-30 00:46:52.937 [main]   DEBUG s.stockalert.StockAlertApplicationKt - Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-10-30 00:46:52.937 [main]   INFO  s.stockalert.StockAlertApplicationKt - No active profile set, falling back to 1 default profile: "default"
+2025-10-30 00:46:53.153 [main]   INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-30 00:46:53.153 [main]   INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-30 00:46:53.199 [main]   INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 42 ms. Found 3 JPA repository interfaces.
+2025-10-30 00:46:53.200 [main]   INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-30 00:46:53.200 [main]   INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-10-30 00:46:53.210 [main]   INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 2 ms. Found 1 Redis repository interface.
+2025-10-30 00:46:53.558 [main]   INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-10-30 00:46:53.564 [main]   INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-10-30 00:46:53.564 [main]   INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-10-30 00:46:53.582 [main]   INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-10-30 00:46:53.582 [main]   INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 628 ms
+2025-10-30 00:46:53.609 [main]   DEBUG s.s.c.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-10-30 00:46:53.610 [main]   DEBUG s.s.common.logging.LoggingFilter - Filter 'loggingFilter' configured for use
+2025-10-30 00:46:53.655 [main]   INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-30 00:46:53.676 [main]   INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-10-30 00:46:53.689 [main]   INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-10-30 00:46:53.809 [main]   INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-30 00:46:53.821 [main]   INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-10-30 00:46:53.886 [main]   INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@30d5fc1b
+2025-10-30 00:46:53.887 [main]   INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-10-30 00:46:54.248 [main]   INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-30 00:46:54.276 [main]   INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-30 00:46:54.616 [main]   ERROR i.n.r.d.DnsServerAddressStreamProviders - Unable to load io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'. Use DEBUG level to see the full stack: java.lang.UnsatisfiedLinkError: failed to load the required native library
+2025-10-30 00:46:54.960 [main]   INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-10-30 00:46:54.964 [main]   INFO  s.stockalert.StockAlertApplicationKt - Started StockAlertApplicationKt in 2.225 seconds (process running for 2.595)
+2025-10-30 00:46:54.965 [SpringApplicationShutdownHook]   INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-30 00:46:54.966 [tomcat-shutdown]   INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-10-30 00:46:54.978 [SpringApplicationShutdownHook]   INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-30 00:46:54.979 [SpringApplicationShutdownHook]   INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-10-30 00:46:54.981 [SpringApplicationShutdownHook]   INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-10-30 00:47:15.340 [main]   INFO  s.stockalert.StockAlertApplicationKt - Starting StockAlertApplicationKt v0.0.1-SNAPSHOT using Java 24.0.1 with PID 20578 (/Users/bellcold/study/stock-alert/build/libs/stock-alert-0.0.1-SNAPSHOT.jar started by bellcold in /Users/bellcold/study/stock-alert)
+2025-10-30 00:47:15.341 [main]   DEBUG s.stockalert.StockAlertApplicationKt - Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-10-30 00:47:15.341 [main]   INFO  s.stockalert.StockAlertApplicationKt - No active profile set, falling back to 1 default profile: "default"
+2025-10-30 00:47:15.605 [main]   INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-30 00:47:15.605 [main]   INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-30 00:47:15.661 [main]   INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 52 ms. Found 3 JPA repository interfaces.
+2025-10-30 00:47:15.662 [main]   INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-30 00:47:15.662 [main]   INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-10-30 00:47:15.670 [main]   INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 2 ms. Found 1 Redis repository interface.
+2025-10-30 00:47:16.060 [main]   INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-10-30 00:47:16.068 [main]   INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-10-30 00:47:16.068 [main]   INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-10-30 00:47:16.080 [main]   INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-10-30 00:47:16.080 [main]   INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 717 ms
+2025-10-30 00:47:16.107 [main]   DEBUG s.s.c.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-10-30 00:47:16.107 [main]   DEBUG s.s.common.logging.LoggingFilter - Filter 'loggingFilter' configured for use
+2025-10-30 00:47:16.166 [main]   INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-30 00:47:16.191 [main]   INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-10-30 00:47:16.203 [main]   INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-10-30 00:47:16.324 [main]   INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-30 00:47:16.336 [main]   INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-10-30 00:47:16.411 [main]   INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@52a74328
+2025-10-30 00:47:16.412 [main]   INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-10-30 00:47:16.781 [main]   INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-30 00:47:16.810 [main]   INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-30 00:47:17.154 [main]   ERROR i.n.r.d.DnsServerAddressStreamProviders - Unable to load io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'. Use DEBUG level to see the full stack: java.lang.UnsatisfiedLinkError: failed to load the required native library
+2025-10-30 00:47:17.474 [main]   INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-10-30 00:47:17.481 [main]   INFO  s.stockalert.StockAlertApplicationKt - Started StockAlertApplicationKt in 2.404 seconds (process running for 2.653)
+2025-10-30 00:47:26.830 [SpringApplicationShutdownHook]   INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-30 00:47:26.833 [tomcat-shutdown]   INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-10-30 00:47:26.852 [SpringApplicationShutdownHook]   INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-30 00:47:26.853 [SpringApplicationShutdownHook]   INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-10-30 00:47:26.856 [SpringApplicationShutdownHook]   INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

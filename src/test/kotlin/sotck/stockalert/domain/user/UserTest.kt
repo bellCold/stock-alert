@@ -61,7 +61,7 @@ class UserTest {
         val user = UserFixture.create(email = email, name = name)
 
         // then
-        assertThat(user.email).isEqualTo(email)
+        assertThat(user.email.value).isEqualTo(email)
         assertThat(user.name).isEqualTo(name)
     }
 

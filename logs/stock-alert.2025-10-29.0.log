@@ -1,0 +1,981 @@
+2025-10-29 23:17:47.289 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - Starting StockAlertApplicationKt using Java 21.0.6 with PID 11145 (/Users/bellcold/study/stock-alert/build/classes/kotlin/main started by bellcold in /Users/bellcold/study/stock-alert)
+2025-10-29 23:17:47.290 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.stockalert.StockAlertApplicationKt - Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-10-29 23:17:47.290 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - No active profile set, falling back to 1 default profile: "default"
+2025-10-29 23:17:47.677 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-29 23:17:47.678 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-29 23:17:47.742 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 59 ms. Found 3 JPA repository interfaces.
+2025-10-29 23:17:47.749 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-29 23:17:47.750 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-10-29 23:17:47.758 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface sotck.stockalert.adapter.out.persistence.AlertJpaRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-10-29 23:17:47.759 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface sotck.stockalert.adapter.out.persistence.StockJpaRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-10-29 23:17:47.759 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface sotck.stockalert.adapter.out.persistence.UserJpaRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-10-29 23:17:47.759 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 3 ms. Found 0 Redis repository interfaces.
+2025-10-29 23:17:48.028 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-10-29 23:17:48.034 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-10-29 23:17:48.034 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-10-29 23:17:48.051 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-10-29 23:17:48.051 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 741 ms
+2025-10-29 23:17:48.075 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.s.c.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-10-29 23:17:48.075 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.s.common.logging.LoggingFilter - Filter 'loggingFilter' configured for use
+2025-10-29 23:17:48.126 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-29 23:17:48.150 [main] [NO_CORRELATION_ID] [anonymous] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-10-29 23:17:48.165 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-10-29 23:17:48.293 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-29 23:17:48.307 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-10-29 23:17:48.395 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2d758472
+2025-10-29 23:17:48.396 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-10-29 23:17:48.430 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.43
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-10-29 23:17:48.772 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-29 23:17:48.796 [main] [NO_CORRELATION_ID] [anonymous] DEBUG org.hibernate.SQL - 
+    alter table users 
+       modify column email varchar(255)
+2025-10-29 23:17:48.818 [main] [NO_CORRELATION_ID] [anonymous] DEBUG org.hibernate.SQL - 
+    alter table users 
+       modify column name varchar(255)
+2025-10-29 23:17:48.832 [main] [NO_CORRELATION_ID] [anonymous] DEBUG org.hibernate.SQL - 
+    alter table users 
+       add column status enum ('ACTIVE','INACTIVE','SUSPENDED')
+2025-10-29 23:17:48.851 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 23:17:49.195 [main] [NO_CORRELATION_ID] [anonymous] ERROR i.n.r.d.DnsServerAddressStreamProviders - Unable to load io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'. Use DEBUG level to see the full stack: java.lang.UnsatisfiedLinkError: failed to load the required native library
+2025-10-29 23:17:49.389 [main] [NO_CORRELATION_ID] [anonymous] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: fe80195d-7b64-468c-b245-56d29f15b9c8
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-10-29 23:17:49.392 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-10-29 23:17:49.546 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-10-29 23:17:49.551 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - Started StockAlertApplicationKt in 2.499 seconds (process running for 3.003)
+2025-10-29 23:18:04.466 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-29 23:18:04.467 [tomcat-shutdown] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-10-29 23:18:04.478 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 23:18:04.479 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-10-29 23:18:04.481 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-10-29 23:19:20.259 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - Starting StockAlertApplicationKt using Java 21.0.6 with PID 12082 (/Users/bellcold/study/stock-alert/build/classes/kotlin/main started by bellcold in /Users/bellcold/study/stock-alert)
+2025-10-29 23:19:20.260 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.stockalert.StockAlertApplicationKt - Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-10-29 23:19:20.260 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - No active profile set, falling back to 1 default profile: "default"
+2025-10-29 23:19:20.575 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-29 23:19:20.575 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-29 23:19:20.629 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 50 ms. Found 3 JPA repository interfaces.
+2025-10-29 23:19:20.635 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-29 23:19:20.636 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-10-29 23:19:20.642 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface sotck.stockalert.adapter.out.persistence.AlertJpaRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-10-29 23:19:20.642 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface sotck.stockalert.adapter.out.persistence.StockJpaRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-10-29 23:19:20.642 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface sotck.stockalert.adapter.out.persistence.UserJpaRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-10-29 23:19:20.643 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 3 ms. Found 0 Redis repository interfaces.
+2025-10-29 23:19:20.890 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-10-29 23:19:20.896 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-10-29 23:19:20.896 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-10-29 23:19:20.912 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-10-29 23:19:20.912 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 634 ms
+2025-10-29 23:19:20.937 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.s.c.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-10-29 23:19:20.937 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.s.common.logging.LoggingFilter - Filter 'loggingFilter' configured for use
+2025-10-29 23:19:20.980 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-29 23:19:20.996 [main] [NO_CORRELATION_ID] [anonymous] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-10-29 23:19:21.007 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-10-29 23:19:21.115 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-29 23:19:21.128 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-10-29 23:19:21.198 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@21046afa
+2025-10-29 23:19:21.199 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-10-29 23:19:21.232 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.43
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-10-29 23:19:21.560 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-29 23:19:21.583 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 23:19:21.900 [main] [NO_CORRELATION_ID] [anonymous] ERROR i.n.r.d.DnsServerAddressStreamProviders - Unable to load io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'. Use DEBUG level to see the full stack: java.lang.UnsatisfiedLinkError: failed to load the required native library
+2025-10-29 23:19:22.218 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-10-29 23:19:22.223 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - Started StockAlertApplicationKt in 2.164 seconds (process running for 2.536)
+2025-10-29 23:20:54.633 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-29 23:20:54.635 [tomcat-shutdown] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-10-29 23:20:54.649 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 23:20:54.650 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-10-29 23:20:54.652 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-10-29 23:20:56.874 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - Starting StockAlertApplicationKt using Java 21.0.6 with PID 12255 (/Users/bellcold/study/stock-alert/build/classes/kotlin/main started by bellcold in /Users/bellcold/study/stock-alert)
+2025-10-29 23:20:56.875 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.stockalert.StockAlertApplicationKt - Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-10-29 23:20:56.875 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - No active profile set, falling back to 1 default profile: "default"
+2025-10-29 23:20:57.232 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-29 23:20:57.233 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-29 23:20:57.299 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 62 ms. Found 3 JPA repository interfaces.
+2025-10-29 23:20:57.307 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-29 23:20:57.307 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-10-29 23:20:57.321 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface sotck.stockalert.adapter.out.persistence.AlertJpaRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-10-29 23:20:57.322 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface sotck.stockalert.adapter.out.persistence.StockJpaRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-10-29 23:20:57.322 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface sotck.stockalert.adapter.out.persistence.UserJpaRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-10-29 23:20:57.322 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 10 ms. Found 0 Redis repository interfaces.
+2025-10-29 23:20:57.582 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-10-29 23:20:57.588 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-10-29 23:20:57.588 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-10-29 23:20:57.604 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-10-29 23:20:57.604 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 712 ms
+2025-10-29 23:20:57.629 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.s.c.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-10-29 23:20:57.629 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.s.common.logging.LoggingFilter - Filter 'loggingFilter' configured for use
+2025-10-29 23:20:57.673 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-29 23:20:57.693 [main] [NO_CORRELATION_ID] [anonymous] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-10-29 23:20:57.705 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-10-29 23:20:57.823 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-29 23:20:57.836 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-10-29 23:20:57.905 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@69e8b711
+2025-10-29 23:20:57.906 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-10-29 23:20:57.940 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.43
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-10-29 23:20:58.270 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-29 23:20:58.295 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 23:20:58.632 [main] [NO_CORRELATION_ID] [anonymous] ERROR i.n.r.d.DnsServerAddressStreamProviders - Unable to load io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'. Use DEBUG level to see the full stack: java.lang.UnsatisfiedLinkError: failed to load the required native library
+2025-10-29 23:20:58.831 [main] [NO_CORRELATION_ID] [anonymous] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: c1501343-e135-46d6-9f6b-bd05c36c69c2
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-10-29 23:20:58.834 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-10-29 23:20:58.979 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-10-29 23:20:58.984 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - Started StockAlertApplicationKt in 2.312 seconds (process running for 2.689)
+2025-10-29 23:24:38.349 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-29 23:24:38.351 [tomcat-shutdown] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-10-29 23:24:38.368 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 23:24:38.369 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-10-29 23:24:38.373 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-10-29 23:24:41.041 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - Starting StockAlertApplicationKt using Java 21.0.6 with PID 12653 (/Users/bellcold/study/stock-alert/build/classes/kotlin/main started by bellcold in /Users/bellcold/study/stock-alert)
+2025-10-29 23:24:41.041 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.stockalert.StockAlertApplicationKt - Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-10-29 23:24:41.042 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - No active profile set, falling back to 1 default profile: "default"
+2025-10-29 23:24:41.359 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-29 23:24:41.360 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-29 23:24:41.413 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 50 ms. Found 3 JPA repository interfaces.
+2025-10-29 23:24:41.419 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-29 23:24:41.420 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-10-29 23:24:41.426 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface sotck.stockalert.adapter.out.persistence.AlertJpaRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-10-29 23:24:41.427 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface sotck.stockalert.adapter.out.persistence.StockJpaRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-10-29 23:24:41.427 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface sotck.stockalert.adapter.out.persistence.UserJpaRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-10-29 23:24:41.427 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 3 ms. Found 0 Redis repository interfaces.
+2025-10-29 23:24:41.673 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-10-29 23:24:41.679 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-10-29 23:24:41.679 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-10-29 23:24:41.695 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-10-29 23:24:41.695 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 637 ms
+2025-10-29 23:24:41.724 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.s.c.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-10-29 23:24:41.724 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.s.common.logging.LoggingFilter - Filter 'loggingFilter' configured for use
+2025-10-29 23:24:41.768 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-29 23:24:41.787 [main] [NO_CORRELATION_ID] [anonymous] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-10-29 23:24:41.798 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-10-29 23:24:41.911 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-29 23:24:41.923 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-10-29 23:24:41.994 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@32b1e906
+2025-10-29 23:24:41.995 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-10-29 23:24:42.027 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.43
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-10-29 23:24:42.363 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-29 23:24:42.389 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 23:24:42.714 [main] [NO_CORRELATION_ID] [anonymous] ERROR i.n.r.d.DnsServerAddressStreamProviders - Unable to load io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'. Use DEBUG level to see the full stack: java.lang.UnsatisfiedLinkError: failed to load the required native library
+2025-10-29 23:24:43.043 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-10-29 23:24:43.048 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - Started StockAlertApplicationKt in 2.202 seconds (process running for 2.579)
+2025-10-29 23:26:08.209 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-29 23:26:08.211 [tomcat-shutdown] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-10-29 23:26:08.227 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 23:26:08.228 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-10-29 23:26:08.230 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-10-29 23:26:09.475 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - Starting StockAlertApplicationKt using Java 21.0.6 with PID 12843 (/Users/bellcold/study/stock-alert/build/classes/kotlin/main started by bellcold in /Users/bellcold/study/stock-alert)
+2025-10-29 23:26:09.475 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.stockalert.StockAlertApplicationKt - Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-10-29 23:26:09.475 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - No active profile set, falling back to 1 default profile: "default"
+2025-10-29 23:26:09.805 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-29 23:26:09.806 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-29 23:26:09.862 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 52 ms. Found 3 JPA repository interfaces.
+2025-10-29 23:26:09.868 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-29 23:26:09.869 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-10-29 23:26:09.875 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface sotck.stockalert.adapter.out.persistence.AlertJpaRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-10-29 23:26:09.875 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface sotck.stockalert.adapter.out.persistence.StockJpaRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-10-29 23:26:09.875 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface sotck.stockalert.adapter.out.persistence.UserJpaRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-10-29 23:26:09.875 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 3 ms. Found 0 Redis repository interfaces.
+2025-10-29 23:26:10.129 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-10-29 23:26:10.135 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-10-29 23:26:10.135 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-10-29 23:26:10.152 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-10-29 23:26:10.152 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 661 ms
+2025-10-29 23:26:10.177 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.s.c.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-10-29 23:26:10.177 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.s.common.logging.LoggingFilter - Filter 'loggingFilter' configured for use
+2025-10-29 23:26:10.220 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-29 23:26:10.240 [main] [NO_CORRELATION_ID] [anonymous] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-10-29 23:26:10.251 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-10-29 23:26:10.370 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-29 23:26:10.383 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-10-29 23:26:10.452 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7491cdae
+2025-10-29 23:26:10.453 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-10-29 23:26:10.484 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.43
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-10-29 23:26:10.835 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-29 23:26:10.859 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 23:26:11.195 [main] [NO_CORRELATION_ID] [anonymous] ERROR i.n.r.d.DnsServerAddressStreamProviders - Unable to load io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'. Use DEBUG level to see the full stack: java.lang.UnsatisfiedLinkError: failed to load the required native library
+2025-10-29 23:26:11.538 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-10-29 23:26:11.543 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - Started StockAlertApplicationKt in 2.262 seconds (process running for 2.646)
+2025-10-29 23:27:19.990 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-29 23:27:19.992 [tomcat-shutdown] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-10-29 23:27:20.004 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 23:27:20.004 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-10-29 23:27:20.007 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-10-29 23:27:21.850 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - Starting StockAlertApplicationKt using Java 21.0.6 with PID 12983 (/Users/bellcold/study/stock-alert/build/classes/kotlin/main started by bellcold in /Users/bellcold/study/stock-alert)
+2025-10-29 23:27:21.851 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.stockalert.StockAlertApplicationKt - Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-10-29 23:27:21.851 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - No active profile set, falling back to 1 default profile: "default"
+2025-10-29 23:27:22.161 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-29 23:27:22.162 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-29 23:27:22.211 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 46 ms. Found 3 JPA repository interfaces.
+2025-10-29 23:27:22.216 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-29 23:27:22.217 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-10-29 23:27:22.222 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface sotck.stockalert.adapter.out.persistence.AlertJpaRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-10-29 23:27:22.223 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface sotck.stockalert.adapter.out.persistence.StockJpaRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-10-29 23:27:22.223 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface sotck.stockalert.adapter.out.persistence.UserJpaRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-10-29 23:27:22.223 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 3 ms. Found 0 Redis repository interfaces.
+2025-10-29 23:27:22.465 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-10-29 23:27:22.471 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-10-29 23:27:22.471 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-10-29 23:27:22.488 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-10-29 23:27:22.488 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 620 ms
+2025-10-29 23:27:22.513 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.s.c.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-10-29 23:27:22.513 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.s.common.logging.LoggingFilter - Filter 'loggingFilter' configured for use
+2025-10-29 23:27:22.556 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-29 23:27:22.572 [main] [NO_CORRELATION_ID] [anonymous] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-10-29 23:27:22.583 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-10-29 23:27:22.694 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-29 23:27:22.707 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-10-29 23:27:22.775 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4fcedf83
+2025-10-29 23:27:22.776 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-10-29 23:27:22.811 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.43
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-10-29 23:27:23.151 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-29 23:27:23.176 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 23:27:23.492 [main] [NO_CORRELATION_ID] [anonymous] ERROR i.n.r.d.DnsServerAddressStreamProviders - Unable to load io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'. Use DEBUG level to see the full stack: java.lang.UnsatisfiedLinkError: failed to load the required native library
+2025-10-29 23:27:23.806 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-10-29 23:27:23.811 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - Started StockAlertApplicationKt in 2.157 seconds (process running for 2.525)
+2025-10-29 23:28:47.826 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-29 23:28:47.828 [tomcat-shutdown] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-10-29 23:28:47.844 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 23:28:47.845 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-10-29 23:28:47.847 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-10-29 23:28:49.687 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - Starting StockAlertApplicationKt using Java 21.0.6 with PID 13169 (/Users/bellcold/study/stock-alert/build/classes/kotlin/main started by bellcold in /Users/bellcold/study/stock-alert)
+2025-10-29 23:28:49.688 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.stockalert.StockAlertApplicationKt - Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-10-29 23:28:49.688 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - No active profile set, falling back to 1 default profile: "default"
+2025-10-29 23:28:50.008 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-29 23:28:50.009 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-29 23:28:50.063 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 50 ms. Found 3 JPA repository interfaces.
+2025-10-29 23:28:50.313 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-10-29 23:28:50.319 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-10-29 23:28:50.319 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-10-29 23:28:50.337 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-10-29 23:28:50.337 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 631 ms
+2025-10-29 23:28:50.362 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.s.c.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-10-29 23:28:50.362 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.s.common.logging.LoggingFilter - Filter 'loggingFilter' configured for use
+2025-10-29 23:28:50.406 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-29 23:28:50.426 [main] [NO_CORRELATION_ID] [anonymous] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-10-29 23:28:50.437 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-10-29 23:28:50.551 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-29 23:28:50.562 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-10-29 23:28:50.626 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@57a0c261
+2025-10-29 23:28:50.626 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-10-29 23:28:50.661 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.43
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-10-29 23:28:51.001 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-29 23:28:51.024 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 23:28:51.351 [main] [NO_CORRELATION_ID] [anonymous] ERROR i.n.r.d.DnsServerAddressStreamProviders - Unable to load io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'. Use DEBUG level to see the full stack: java.lang.UnsatisfiedLinkError: failed to load the required native library
+2025-10-29 23:28:51.679 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-10-29 23:28:51.684 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - Started StockAlertApplicationKt in 2.189 seconds (process running for 2.563)
+2025-10-29 23:30:13.466 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-29 23:30:13.467 [tomcat-shutdown] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-10-29 23:30:13.480 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 23:30:13.480 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-10-29 23:30:13.482 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-10-29 23:30:14.835 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - Starting StockAlertApplicationKt using Java 21.0.6 with PID 13313 (/Users/bellcold/study/stock-alert/build/classes/kotlin/main started by bellcold in /Users/bellcold/study/stock-alert)
+2025-10-29 23:30:14.836 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.stockalert.StockAlertApplicationKt - Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-10-29 23:30:14.836 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - No active profile set, falling back to 1 default profile: "default"
+2025-10-29 23:30:15.058 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-29 23:30:15.058 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-29 23:30:15.104 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 43 ms. Found 3 JPA repository interfaces.
+2025-10-29 23:30:15.201 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-29 23:30:15.202 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-10-29 23:30:15.212 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface sotck.stockalert.adapter.out.persistence.AlertJpaRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-10-29 23:30:15.212 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface sotck.stockalert.adapter.out.persistence.StockJpaRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-10-29 23:30:15.212 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface sotck.stockalert.adapter.out.persistence.UserJpaRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-10-29 23:30:15.212 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+2025-10-29 23:30:15.457 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-10-29 23:30:15.462 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-10-29 23:30:15.462 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-10-29 23:30:15.479 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-10-29 23:30:15.479 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 619 ms
+2025-10-29 23:30:15.503 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.s.c.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-10-29 23:30:15.503 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.s.common.logging.LoggingFilter - Filter 'loggingFilter' configured for use
+2025-10-29 23:30:15.547 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-29 23:30:15.564 [main] [NO_CORRELATION_ID] [anonymous] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-10-29 23:30:15.574 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-10-29 23:30:15.685 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-29 23:30:15.698 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-10-29 23:30:15.773 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2979c6ef
+2025-10-29 23:30:15.774 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-10-29 23:30:15.805 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.43
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-10-29 23:30:16.141 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-29 23:30:16.165 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 23:30:16.479 [main] [NO_CORRELATION_ID] [anonymous] ERROR i.n.r.d.DnsServerAddressStreamProviders - Unable to load io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'. Use DEBUG level to see the full stack: java.lang.UnsatisfiedLinkError: failed to load the required native library
+2025-10-29 23:30:16.856 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-10-29 23:30:16.860 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - Started StockAlertApplicationKt in 2.23 seconds (process running for 2.605)
+2025-10-29 23:31:54.628 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-29 23:31:54.629 [tomcat-shutdown] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-10-29 23:31:54.647 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 23:31:54.648 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-10-29 23:31:54.650 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-10-29 23:31:56.749 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - Starting StockAlertApplicationKt using Java 21.0.6 with PID 13477 (/Users/bellcold/study/stock-alert/build/classes/kotlin/main started by bellcold in /Users/bellcold/study/stock-alert)
+2025-10-29 23:31:56.750 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.stockalert.StockAlertApplicationKt - Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-10-29 23:31:56.750 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - No active profile set, falling back to 1 default profile: "default"
+2025-10-29 23:31:56.995 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-29 23:31:56.995 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-29 23:31:57.057 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 58 ms. Found 3 JPA repository interfaces.
+2025-10-29 23:31:57.060 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - Starting StockAlertApplicationKt using Java 21.0.6 with PID 13479 (/Users/bellcold/study/stock-alert/build/classes/kotlin/main started by bellcold in /Users/bellcold/study/stock-alert)
+2025-10-29 23:31:57.060 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.stockalert.StockAlertApplicationKt - Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-10-29 23:31:57.061 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - No active profile set, falling back to 1 default profile: "default"
+2025-10-29 23:31:57.175 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-29 23:31:57.176 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-10-29 23:31:57.195 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface sotck.stockalert.adapter.out.persistence.AlertJpaRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-10-29 23:31:57.196 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface sotck.stockalert.adapter.out.persistence.StockJpaRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-10-29 23:31:57.196 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface sotck.stockalert.adapter.out.persistence.UserJpaRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-10-29 23:31:57.196 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 15 ms. Found 0 Redis repository interfaces.
+2025-10-29 23:31:57.290 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-29 23:31:57.290 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-29 23:31:57.342 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 49 ms. Found 3 JPA repository interfaces.
+2025-10-29 23:31:57.442 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-29 23:31:57.442 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-10-29 23:31:57.459 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface sotck.stockalert.adapter.out.persistence.AlertJpaRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-10-29 23:31:57.460 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface sotck.stockalert.adapter.out.persistence.StockJpaRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-10-29 23:31:57.460 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface sotck.stockalert.adapter.out.persistence.UserJpaRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-10-29 23:31:57.460 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 14 ms. Found 0 Redis repository interfaces.
+2025-10-29 23:31:57.464 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-10-29 23:31:57.471 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-10-29 23:31:57.471 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-10-29 23:31:57.490 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-10-29 23:31:57.490 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 718 ms
+2025-10-29 23:31:57.519 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.s.c.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-10-29 23:31:57.519 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.s.common.logging.LoggingFilter - Filter 'loggingFilter' configured for use
+2025-10-29 23:31:57.570 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-29 23:31:57.592 [main] [NO_CORRELATION_ID] [anonymous] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-10-29 23:31:57.605 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-10-29 23:31:57.710 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-10-29 23:31:57.715 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-10-29 23:31:57.715 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-10-29 23:31:57.727 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-29 23:31:57.732 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-10-29 23:31:57.732 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 650 ms
+2025-10-29 23:31:57.739 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-10-29 23:31:57.758 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.s.c.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-10-29 23:31:57.759 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.s.common.logging.LoggingFilter - Filter 'loggingFilter' configured for use
+2025-10-29 23:31:57.804 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-29 23:31:57.809 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@472dbaf5
+2025-10-29 23:31:57.809 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-10-29 23:31:57.821 [main] [NO_CORRELATION_ID] [anonymous] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-10-29 23:31:57.833 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-10-29 23:31:57.843 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.43
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-10-29 23:31:57.944 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-29 23:31:57.956 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-10-29 23:31:58.027 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7b92ea9d
+2025-10-29 23:31:58.028 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-10-29 23:31:58.062 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.43
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-10-29 23:31:58.210 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-29 23:31:58.239 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 23:31:58.409 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-29 23:31:58.436 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 23:31:58.609 [main] [NO_CORRELATION_ID] [anonymous] ERROR i.n.r.d.DnsServerAddressStreamProviders - Unable to load io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'. Use DEBUG level to see the full stack: java.lang.UnsatisfiedLinkError: failed to load the required native library
+2025-10-29 23:31:58.776 [main] [NO_CORRELATION_ID] [anonymous] ERROR i.n.r.d.DnsServerAddressStreamProviders - Unable to load io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'. Use DEBUG level to see the full stack: java.lang.UnsatisfiedLinkError: failed to load the required native library
+2025-10-29 23:31:58.985 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-10-29 23:31:58.989 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - Started StockAlertApplicationKt in 2.465 seconds (process running for 2.871)
+2025-10-29 23:31:59.117 [main] [NO_CORRELATION_ID] [anonymous] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2025-10-29 23:31:59.121 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 23:31:59.122 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-10-29 23:31:59.124 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-10-29 23:31:59.129 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-10-29 23:31:59.138 [main] [NO_CORRELATION_ID] [anonymous] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2025-10-29 23:32:00.275 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-29 23:32:00.276 [tomcat-shutdown] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-10-29 23:32:00.286 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 23:32:00.287 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-10-29 23:32:00.289 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-10-29 23:34:28.821 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - Starting StockAlertApplicationKt v0.0.1-SNAPSHOT using Java 24.0.1 with PID 13721 (/Users/bellcold/study/stock-alert/build/libs/stock-alert-0.0.1-SNAPSHOT.jar started by bellcold in /Users/bellcold/study/stock-alert)
+2025-10-29 23:34:28.822 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.stockalert.StockAlertApplicationKt - Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-10-29 23:34:28.823 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - No active profile set, falling back to 1 default profile: "default"
+2025-10-29 23:34:29.041 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-29 23:34:29.041 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-10-29 23:34:29.048 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 1 ms. Found 0 Redis repository interfaces.
+2025-10-29 23:34:29.142 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-29 23:34:29.142 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-29 23:34:29.193 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 49 ms. Found 3 JPA repository interfaces.
+2025-10-29 23:34:29.197 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-29 23:34:29.197 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-10-29 23:34:29.200 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface sotck.stockalert.adapter.out.persistence.AlertJpaRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-10-29 23:34:29.201 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface sotck.stockalert.adapter.out.persistence.StockJpaRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-10-29 23:34:29.201 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface sotck.stockalert.adapter.out.persistence.UserJpaRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-10-29 23:34:29.201 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 3 ms. Found 0 Redis repository interfaces.
+2025-10-29 23:34:29.453 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-10-29 23:34:29.458 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-10-29 23:34:29.459 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-10-29 23:34:29.469 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-10-29 23:34:29.469 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 627 ms
+2025-10-29 23:34:29.494 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.s.c.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-10-29 23:34:29.494 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.s.common.logging.LoggingFilter - Filter 'loggingFilter' configured for use
+2025-10-29 23:34:29.544 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-29 23:34:29.560 [main] [NO_CORRELATION_ID] [anonymous] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-10-29 23:34:29.572 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-10-29 23:34:29.676 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-29 23:34:29.686 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-10-29 23:34:29.750 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@61b0af9f
+2025-10-29 23:34:29.750 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-10-29 23:34:29.778 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.43
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-10-29 23:34:30.073 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-29 23:34:30.096 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 23:34:30.408 [main] [NO_CORRELATION_ID] [anonymous] ERROR i.n.r.d.DnsServerAddressStreamProviders - Unable to load io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'. Use DEBUG level to see the full stack: java.lang.UnsatisfiedLinkError: failed to load the required native library
+2025-10-29 23:34:30.733 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-10-29 23:34:30.740 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - Started StockAlertApplicationKt in 2.152 seconds (process running for 2.355)
+2025-10-29 23:35:53.329 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - Starting StockAlertApplicationKt v0.0.1-SNAPSHOT using Java 24.0.1 with PID 14098 (/Users/bellcold/study/stock-alert/build/libs/stock-alert-0.0.1-SNAPSHOT.jar started by bellcold in /Users/bellcold/study/stock-alert)
+2025-10-29 23:35:53.329 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.stockalert.StockAlertApplicationKt - Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-10-29 23:35:53.330 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - No active profile set, falling back to 1 default profile: "default"
+2025-10-29 23:35:53.640 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-29 23:35:53.641 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-29 23:35:53.695 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 51 ms. Found 3 JPA repository interfaces.
+2025-10-29 23:35:53.963 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-10-29 23:35:53.969 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-10-29 23:35:53.970 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-10-29 23:35:53.979 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-10-29 23:35:53.979 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 630 ms
+2025-10-29 23:35:54.006 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.s.c.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-10-29 23:35:54.006 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.s.common.logging.LoggingFilter - Filter 'loggingFilter' configured for use
+2025-10-29 23:35:54.059 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-29 23:35:54.079 [main] [NO_CORRELATION_ID] [anonymous] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-10-29 23:35:54.091 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-10-29 23:35:54.203 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-29 23:35:54.214 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-10-29 23:35:54.283 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@644e6a8e
+2025-10-29 23:35:54.284 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-10-29 23:35:54.313 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.43
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-10-29 23:35:54.616 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-29 23:35:54.636 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 23:35:54.961 [main] [NO_CORRELATION_ID] [anonymous] ERROR i.n.r.d.DnsServerAddressStreamProviders - Unable to load io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'. Use DEBUG level to see the full stack: java.lang.UnsatisfiedLinkError: failed to load the required native library
+2025-10-29 23:35:55.265 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-10-29 23:35:55.272 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - Started StockAlertApplicationKt in 2.175 seconds (process running for 2.365)
+2025-10-29 23:36:59.640 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - Starting StockAlertApplicationKt v0.0.1-SNAPSHOT using Java 24.0.1 with PID 14404 (/Users/bellcold/study/stock-alert/build/libs/stock-alert-0.0.1-SNAPSHOT.jar started by bellcold in /Users/bellcold/study/stock-alert)
+2025-10-29 23:36:59.641 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.stockalert.StockAlertApplicationKt - Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-10-29 23:36:59.641 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - No active profile set, falling back to 1 default profile: "default"
+2025-10-29 23:36:59.958 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-29 23:36:59.959 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-29 23:37:00.013 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 50 ms. Found 3 JPA repository interfaces.
+2025-10-29 23:37:00.279 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-10-29 23:37:00.286 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-10-29 23:37:00.286 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-10-29 23:37:00.297 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-10-29 23:37:00.297 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 637 ms
+2025-10-29 23:37:00.325 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.s.c.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-10-29 23:37:00.325 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.s.common.logging.LoggingFilter - Filter 'loggingFilter' configured for use
+2025-10-29 23:37:00.378 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-29 23:37:00.397 [main] [NO_CORRELATION_ID] [anonymous] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-10-29 23:37:00.408 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-10-29 23:37:00.515 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-29 23:37:00.526 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-10-29 23:37:00.595 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@10a064bd
+2025-10-29 23:37:00.596 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-10-29 23:37:00.628 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.43
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-10-29 23:37:00.921 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-29 23:37:00.943 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 23:37:01.262 [main] [NO_CORRELATION_ID] [anonymous] ERROR i.n.r.d.DnsServerAddressStreamProviders - Unable to load io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'. Use DEBUG level to see the full stack: java.lang.UnsatisfiedLinkError: failed to load the required native library
+2025-10-29 23:37:01.561 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-10-29 23:37:01.570 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - Started StockAlertApplicationKt in 2.166 seconds (process running for 2.361)
+2025-10-29 23:38:53.946 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - Starting StockAlertApplicationKt v0.0.1-SNAPSHOT using Java 24.0.1 with PID 14836 (/Users/bellcold/study/stock-alert/build/libs/stock-alert-0.0.1-SNAPSHOT.jar started by bellcold in /Users/bellcold/study/stock-alert)
+2025-10-29 23:38:53.946 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.stockalert.StockAlertApplicationKt - Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-10-29 23:38:53.947 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - No active profile set, falling back to 1 default profile: "default"
+2025-10-29 23:38:54.261 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-29 23:38:54.262 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-29 23:38:54.315 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 50 ms. Found 3 JPA repository interfaces.
+2025-10-29 23:38:54.589 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-10-29 23:38:54.596 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-10-29 23:38:54.596 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-10-29 23:38:54.607 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-10-29 23:38:54.608 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 640 ms
+2025-10-29 23:38:54.635 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.s.c.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-10-29 23:38:54.636 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.s.common.logging.LoggingFilter - Filter 'loggingFilter' configured for use
+2025-10-29 23:38:54.689 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-29 23:38:54.709 [main] [NO_CORRELATION_ID] [anonymous] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-10-29 23:38:54.720 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-10-29 23:38:54.823 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-29 23:38:54.834 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-10-29 23:38:54.898 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2de7fe0e
+2025-10-29 23:38:54.898 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-10-29 23:38:54.927 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.43
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-10-29 23:38:55.224 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-29 23:38:55.247 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 23:38:55.580 [main] [NO_CORRELATION_ID] [anonymous] ERROR i.n.r.d.DnsServerAddressStreamProviders - Unable to load io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'. Use DEBUG level to see the full stack: java.lang.UnsatisfiedLinkError: failed to load the required native library
+2025-10-29 23:38:55.888 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-10-29 23:38:55.896 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - Started StockAlertApplicationKt in 2.183 seconds (process running for 2.379)
+2025-10-29 23:39:05.513 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-29 23:39:05.516 [tomcat-shutdown] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-10-29 23:39:05.535 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 23:39:05.536 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-10-29 23:39:05.540 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-10-29 23:39:39.184 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - Starting StockAlertApplicationKt using Java 21.0.6 with PID 14953 (/Users/bellcold/study/stock-alert/build/classes/kotlin/main started by bellcold in /Users/bellcold/study/stock-alert)
+2025-10-29 23:39:39.184 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.stockalert.StockAlertApplicationKt - Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-10-29 23:39:39.185 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - No active profile set, falling back to 1 default profile: "default"
+2025-10-29 23:39:39.538 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-29 23:39:39.538 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-29 23:39:39.598 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 56 ms. Found 3 JPA repository interfaces.
+2025-10-29 23:39:39.851 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-10-29 23:39:39.857 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-10-29 23:39:39.857 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-10-29 23:39:39.873 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-10-29 23:39:39.873 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 666 ms
+2025-10-29 23:39:39.898 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.s.c.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-10-29 23:39:39.899 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.s.common.logging.LoggingFilter - Filter 'loggingFilter' configured for use
+2025-10-29 23:39:39.948 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-29 23:39:39.977 [main] [NO_CORRELATION_ID] [anonymous] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-10-29 23:39:39.991 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-10-29 23:39:40.117 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-29 23:39:40.129 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-10-29 23:39:40.193 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4468c0ea
+2025-10-29 23:39:40.194 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-10-29 23:39:40.228 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.43
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-10-29 23:39:40.577 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-29 23:39:40.599 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 23:39:40.933 [main] [NO_CORRELATION_ID] [anonymous] ERROR i.n.r.d.DnsServerAddressStreamProviders - Unable to load io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'. Use DEBUG level to see the full stack: java.lang.UnsatisfiedLinkError: failed to load the required native library
+2025-10-29 23:39:41.272 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-10-29 23:39:41.276 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - Started StockAlertApplicationKt in 2.297 seconds (process running for 2.748)
+2025-10-29 23:39:45.392 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-29 23:39:45.394 [tomcat-shutdown] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-10-29 23:39:45.407 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 23:39:45.407 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-10-29 23:39:45.409 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-10-29 23:41:42.580 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - Starting StockAlertApplicationKt v0.0.1-SNAPSHOT using Java 24.0.1 with PID 15321 (/Users/bellcold/study/stock-alert/build/libs/stock-alert-0.0.1-SNAPSHOT.jar started by bellcold in /Users/bellcold/study/stock-alert)
+2025-10-29 23:41:42.581 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.stockalert.StockAlertApplicationKt - Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-10-29 23:41:42.581 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - No active profile set, falling back to 1 default profile: "default"
+2025-10-29 23:41:42.802 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-29 23:41:42.802 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-10-29 23:41:42.848 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 41 ms. Found 1 Redis repository interface.
+2025-10-29 23:41:42.952 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-29 23:41:42.952 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-29 23:41:42.962 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data JPA - Could not safely identify store assignment for repository candidate interface sotck.stockalert.adapter.out.cache.RefreshTokenRepository; If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: jakarta.persistence.Entity, jakarta.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository
+2025-10-29 23:41:42.969 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 15 ms. Found 3 JPA repository interfaces.
+2025-10-29 23:41:43.221 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-10-29 23:41:43.231 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-10-29 23:41:43.231 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-10-29 23:41:43.242 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-10-29 23:41:43.242 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 642 ms
+2025-10-29 23:41:43.270 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.s.c.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-10-29 23:41:43.270 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.s.common.logging.LoggingFilter - Filter 'loggingFilter' configured for use
+2025-10-29 23:41:43.318 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-29 23:41:43.336 [main] [NO_CORRELATION_ID] [anonymous] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-10-29 23:41:43.347 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-10-29 23:41:43.457 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-29 23:41:43.468 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-10-29 23:41:43.544 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@10301d6f
+2025-10-29 23:41:43.544 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-10-29 23:41:43.574 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.43
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-10-29 23:41:43.878 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-29 23:41:43.901 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 23:41:44.227 [main] [NO_CORRELATION_ID] [anonymous] ERROR i.n.r.d.DnsServerAddressStreamProviders - Unable to load io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'. Use DEBUG level to see the full stack: java.lang.UnsatisfiedLinkError: failed to load the required native library
+2025-10-29 23:41:44.563 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-10-29 23:41:44.570 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - Started StockAlertApplicationKt in 2.22 seconds (process running for 2.423)
+2025-10-29 23:41:54.155 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-29 23:41:54.157 [tomcat-shutdown] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-10-29 23:41:54.176 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 23:41:54.177 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-10-29 23:41:54.179 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-10-29 23:42:30.536 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - Starting StockAlertApplicationKt v0.0.1-SNAPSHOT using Java 24.0.1 with PID 15526 (/Users/bellcold/study/stock-alert/build/libs/stock-alert-0.0.1-SNAPSHOT.jar started by bellcold in /Users/bellcold/study/stock-alert)
+2025-10-29 23:42:30.537 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.stockalert.StockAlertApplicationKt - Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-10-29 23:42:30.537 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - No active profile set, falling back to 1 default profile: "default"
+2025-10-29 23:42:30.764 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-29 23:42:30.764 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-29 23:42:30.814 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 47 ms. Found 3 JPA repository interfaces.
+2025-10-29 23:42:30.815 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-29 23:42:30.816 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-10-29 23:42:30.822 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 2 ms. Found 1 Redis repository interface.
+2025-10-29 23:42:31.179 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-10-29 23:42:31.186 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-10-29 23:42:31.186 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-10-29 23:42:31.198 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-10-29 23:42:31.198 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 641 ms
+2025-10-29 23:42:31.225 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.s.c.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-10-29 23:42:31.225 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.s.common.logging.LoggingFilter - Filter 'loggingFilter' configured for use
+2025-10-29 23:42:31.279 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-29 23:42:31.297 [main] [NO_CORRELATION_ID] [anonymous] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-10-29 23:42:31.308 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-10-29 23:42:31.416 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-29 23:42:31.427 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-10-29 23:42:31.495 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4727e5fc
+2025-10-29 23:42:31.496 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-10-29 23:42:31.527 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.43
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-10-29 23:42:31.821 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-29 23:42:31.845 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 23:42:32.173 [main] [NO_CORRELATION_ID] [anonymous] ERROR i.n.r.d.DnsServerAddressStreamProviders - Unable to load io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'. Use DEBUG level to see the full stack: java.lang.UnsatisfiedLinkError: failed to load the required native library
+2025-10-29 23:42:32.488 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-10-29 23:42:32.495 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - Started StockAlertApplicationKt in 2.188 seconds (process running for 2.383)
+2025-10-29 23:42:42.114 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-29 23:42:42.117 [tomcat-shutdown] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-10-29 23:42:42.138 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 23:42:42.139 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-10-29 23:42:42.142 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-10-29 23:43:26.747 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - Starting StockAlertApplicationKt using Java 21.0.6 with PID 15724 (/Users/bellcold/study/stock-alert/build/classes/kotlin/main started by bellcold in /Users/bellcold/study/stock-alert)
+2025-10-29 23:43:26.747 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.stockalert.StockAlertApplicationKt - Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-10-29 23:43:26.748 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - No active profile set, falling back to 1 default profile: "default"
+2025-10-29 23:43:26.993 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-29 23:43:26.993 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-29 23:43:27.041 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 44 ms. Found 3 JPA repository interfaces.
+2025-10-29 23:43:27.043 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-29 23:43:27.043 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-10-29 23:43:27.050 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 2 ms. Found 1 Redis repository interface.
+2025-10-29 23:43:27.405 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-10-29 23:43:27.415 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-10-29 23:43:27.415 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-10-29 23:43:27.432 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-10-29 23:43:27.432 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 666 ms
+2025-10-29 23:43:27.457 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.s.c.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-10-29 23:43:27.458 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.s.common.logging.LoggingFilter - Filter 'loggingFilter' configured for use
+2025-10-29 23:43:27.506 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-29 23:43:27.530 [main] [NO_CORRELATION_ID] [anonymous] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-10-29 23:43:27.543 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-10-29 23:43:27.671 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-29 23:43:27.683 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-10-29 23:43:27.748 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@cc7909f
+2025-10-29 23:43:27.749 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-10-29 23:43:27.780 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.43
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-10-29 23:43:28.122 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-29 23:43:28.143 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 23:43:28.481 [main] [NO_CORRELATION_ID] [anonymous] ERROR i.n.r.d.DnsServerAddressStreamProviders - Unable to load io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'. Use DEBUG level to see the full stack: java.lang.UnsatisfiedLinkError: failed to load the required native library
+2025-10-29 23:43:28.829 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-10-29 23:43:28.833 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - Started StockAlertApplicationKt in 2.284 seconds (process running for 2.742)
+2025-10-29 23:44:49.537 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - Starting StockAlertApplicationKt v0.0.1-SNAPSHOT using Java 24.0.1 with PID 15882 (/Users/bellcold/study/stock-alert/build/libs/stock-alert-0.0.1-SNAPSHOT.jar started by bellcold in /Users/bellcold/study/stock-alert)
+2025-10-29 23:44:49.538 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.stockalert.StockAlertApplicationKt - Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-10-29 23:44:49.538 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - No active profile set, falling back to 1 default profile: "default"
+2025-10-29 23:44:49.795 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-29 23:44:49.795 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-29 23:44:49.850 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 51 ms. Found 3 JPA repository interfaces.
+2025-10-29 23:44:49.851 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-29 23:44:49.851 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-10-29 23:44:49.857 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 2 ms. Found 1 Redis repository interface.
+2025-10-29 23:44:50.244 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-10-29 23:44:50.250 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-10-29 23:44:50.250 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-10-29 23:44:50.260 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-10-29 23:44:50.260 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 697 ms
+2025-10-29 23:44:50.285 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.s.c.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-10-29 23:44:50.285 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.s.common.logging.LoggingFilter - Filter 'loggingFilter' configured for use
+2025-10-29 23:44:50.342 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-29 23:44:50.363 [main] [NO_CORRELATION_ID] [anonymous] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-10-29 23:44:50.376 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-10-29 23:44:50.484 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-29 23:44:50.494 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-10-29 23:44:50.555 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@54d2f5d3
+2025-10-29 23:44:50.556 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-10-29 23:44:50.885 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-29 23:44:50.911 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 23:44:51.222 [main] [NO_CORRELATION_ID] [anonymous] ERROR i.n.r.d.DnsServerAddressStreamProviders - Unable to load io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'. Use DEBUG level to see the full stack: java.lang.UnsatisfiedLinkError: failed to load the required native library
+2025-10-29 23:44:51.528 [main] [NO_CORRELATION_ID] [anonymous] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2025-10-29 23:44:51.533 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 23:44:51.533 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-10-29 23:44:51.535 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-10-29 23:44:51.540 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-10-29 23:44:51.547 [main] [NO_CORRELATION_ID] [anonymous] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2025-10-29 23:45:14.570 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-29 23:45:14.571 [tomcat-shutdown] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-10-29 23:45:14.583 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 23:45:14.584 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-10-29 23:45:14.586 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-10-29 23:45:16.517 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - Starting StockAlertApplicationKt using Java 21.0.6 with PID 16012 (/Users/bellcold/study/stock-alert/build/classes/kotlin/main started by bellcold in /Users/bellcold/study/stock-alert)
+2025-10-29 23:45:16.518 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.stockalert.StockAlertApplicationKt - Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-10-29 23:45:16.518 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - No active profile set, falling back to 1 default profile: "default"
+2025-10-29 23:45:16.733 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-29 23:45:16.733 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-29 23:45:16.780 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 43 ms. Found 3 JPA repository interfaces.
+2025-10-29 23:45:16.781 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-29 23:45:16.781 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-10-29 23:45:16.786 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 2 ms. Found 1 Redis repository interface.
+2025-10-29 23:45:17.130 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-10-29 23:45:17.136 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-10-29 23:45:17.136 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-10-29 23:45:17.158 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-10-29 23:45:17.158 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 623 ms
+2025-10-29 23:45:17.184 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.s.c.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-10-29 23:45:17.184 [main] [NO_CORRELATION_ID] [anonymous] DEBUG s.s.common.logging.LoggingFilter - Filter 'loggingFilter' configured for use
+2025-10-29 23:45:17.230 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-29 23:45:17.247 [main] [NO_CORRELATION_ID] [anonymous] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-10-29 23:45:17.258 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-10-29 23:45:17.368 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-29 23:45:17.382 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-10-29 23:45:17.447 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@b04a6a4
+2025-10-29 23:45:17.448 [main] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-10-29 23:45:17.815 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-29 23:45:17.839 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 23:45:18.153 [main] [NO_CORRELATION_ID] [anonymous] ERROR i.n.r.d.DnsServerAddressStreamProviders - Unable to load io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'. Use DEBUG level to see the full stack: java.lang.UnsatisfiedLinkError: failed to load the required native library
+2025-10-29 23:45:18.485 [main] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-10-29 23:45:18.489 [main] [NO_CORRELATION_ID] [anonymous] INFO  s.stockalert.StockAlertApplicationKt - Started StockAlertApplicationKt in 2.17 seconds (process running for 2.541)
+2025-10-29 23:47:39.309 [main]]}]} INFO  s.stockalert.StockAlertApplicationKt - Starting StockAlertApplicationKt v0.0.1-SNAPSHOT using Java 24.0.1 with PID 16257 (/Users/bellcold/study/stock-alert/build/libs/stock-alert-0.0.1-SNAPSHOT.jar started by bellcold in /Users/bellcold/study/stock-alert)
+2025-10-29 23:47:39.310 [main]]}]} DEBUG s.stockalert.StockAlertApplicationKt - Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-10-29 23:47:39.310 [main]]}]} INFO  s.stockalert.StockAlertApplicationKt - No active profile set, falling back to 1 default profile: "default"
+2025-10-29 23:47:39.534 [main]]}]} INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-29 23:47:39.534 [main]]}]} INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-29 23:47:39.583 [main]]}]} INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 46 ms. Found 3 JPA repository interfaces.
+2025-10-29 23:47:39.584 [main]]}]} INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-29 23:47:39.584 [main]]}]} INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-10-29 23:47:39.591 [main]]}]} INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 3 ms. Found 1 Redis repository interface.
+2025-10-29 23:47:39.940 [main]]}]} INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-10-29 23:47:39.946 [main]]}]} INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-10-29 23:47:39.946 [main]]}]} INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-10-29 23:47:39.957 [main]]}]} INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-10-29 23:47:39.957 [main]]}]} INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 626 ms
+2025-10-29 23:47:39.981 [main]]}]} DEBUG s.s.c.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-10-29 23:47:39.982 [main]]}]} DEBUG s.s.common.logging.LoggingFilter - Filter 'loggingFilter' configured for use
+2025-10-29 23:47:40.029 [main]]}]} INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-29 23:47:40.047 [main]]}]} INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-10-29 23:47:40.059 [main]]}]} INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-10-29 23:47:40.167 [main]]}]} INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-29 23:47:40.178 [main]]}]} INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-10-29 23:47:40.242 [main]]}]} INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5b2ff4df
+2025-10-29 23:47:40.243 [main]]}]} INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-10-29 23:47:40.569 [main]]}]} INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-29 23:47:40.591 [main]]}]} INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 23:47:40.907 [main]]}]} ERROR i.n.r.d.DnsServerAddressStreamProviders - Unable to load io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'. Use DEBUG level to see the full stack: java.lang.UnsatisfiedLinkError: failed to load the required native library
+2025-10-29 23:47:41.199 [main]]}]} WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2025-10-29 23:47:41.203 [main]]}]} INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 23:47:41.204 [main]]}]} INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-10-29 23:47:41.206 [main]]}]} INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-10-29 23:47:41.211 [main]]}]} INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-10-29 23:47:41.216 [main]]}]} ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2025-10-29 23:49:23.204 [main]   INFO  s.stockalert.StockAlertApplicationKt - Starting StockAlertApplicationKt v0.0.1-SNAPSHOT using Java 24.0.1 with PID 16576 (/Users/bellcold/study/stock-alert/build/libs/stock-alert-0.0.1-SNAPSHOT.jar started by bellcold in /Users/bellcold/study/stock-alert)
+2025-10-29 23:49:23.204 [main]   DEBUG s.stockalert.StockAlertApplicationKt - Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-10-29 23:49:23.205 [main]   INFO  s.stockalert.StockAlertApplicationKt - No active profile set, falling back to 1 default profile: "default"
+2025-10-29 23:49:23.435 [main]   INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-29 23:49:23.435 [main]   INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-29 23:49:23.483 [main]   INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 45 ms. Found 3 JPA repository interfaces.
+2025-10-29 23:49:23.484 [main]   INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-29 23:49:23.485 [main]   INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-10-29 23:49:23.491 [main]   INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 2 ms. Found 1 Redis repository interface.
+2025-10-29 23:49:23.848 [main]   INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-10-29 23:49:23.854 [main]   INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-10-29 23:49:23.854 [main]   INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-10-29 23:49:23.863 [main]   INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-10-29 23:49:23.864 [main]   INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 639 ms
+2025-10-29 23:49:23.890 [main]   DEBUG s.s.c.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-10-29 23:49:23.890 [main]   DEBUG s.s.common.logging.LoggingFilter - Filter 'loggingFilter' configured for use
+2025-10-29 23:49:23.943 [main]   INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-29 23:49:23.960 [main]   INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-10-29 23:49:23.970 [main]   INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-10-29 23:49:24.070 [main]   INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-29 23:49:24.081 [main]   INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-10-29 23:49:24.147 [main]   INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5c9e6d95
+2025-10-29 23:49:24.148 [main]   INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-10-29 23:49:24.479 [main]   INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-29 23:49:24.505 [main]   INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 23:49:24.813 [main]   ERROR i.n.r.d.DnsServerAddressStreamProviders - Unable to load io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'. Use DEBUG level to see the full stack: java.lang.UnsatisfiedLinkError: failed to load the required native library
+2025-10-29 23:49:25.117 [main]   WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2025-10-29 23:49:25.122 [main]   INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 23:49:25.123 [main]   INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-10-29 23:49:25.125 [main]   INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-10-29 23:49:25.129 [main]   INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-10-29 23:49:25.135 [main]   ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2025-10-29 23:51:33.423 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-29 23:51:33.425 [tomcat-shutdown] [NO_CORRELATION_ID] [anonymous] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-10-29 23:51:33.440 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 23:51:33.441 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-10-29 23:51:33.445 [SpringApplicationShutdownHook] [NO_CORRELATION_ID] [anonymous] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-10-29 23:51:35.318 [main]   INFO  s.stockalert.StockAlertApplicationKt - Starting StockAlertApplicationKt using Java 21.0.6 with PID 16795 (/Users/bellcold/study/stock-alert/build/classes/kotlin/main started by bellcold in /Users/bellcold/study/stock-alert)
+2025-10-29 23:51:35.319 [main]   DEBUG s.stockalert.StockAlertApplicationKt - Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-10-29 23:51:35.319 [main]   INFO  s.stockalert.StockAlertApplicationKt - No active profile set, falling back to 1 default profile: "default"
+2025-10-29 23:51:35.550 [main]   INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-29 23:51:35.550 [main]   INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-29 23:51:35.595 [main]   INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 42 ms. Found 3 JPA repository interfaces.
+2025-10-29 23:51:35.597 [main]   INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-29 23:51:35.597 [main]   INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-10-29 23:51:35.603 [main]   INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 2 ms. Found 1 Redis repository interface.
+2025-10-29 23:51:35.939 [main]   INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-10-29 23:51:35.944 [main]   INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-10-29 23:51:35.944 [main]   INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-10-29 23:51:35.965 [main]   INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-10-29 23:51:35.965 [main]   INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 629 ms
+2025-10-29 23:51:35.989 [main]   DEBUG s.s.c.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-10-29 23:51:35.989 [main]   DEBUG s.s.common.logging.LoggingFilter - Filter 'loggingFilter' configured for use
+2025-10-29 23:51:36.032 [main]   INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-29 23:51:36.048 [main]   INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-10-29 23:51:36.059 [main]   INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-10-29 23:51:36.170 [main]   INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-29 23:51:36.184 [main]   INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-10-29 23:51:36.250 [main]   INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2979c6ef
+2025-10-29 23:51:36.251 [main]   INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-10-29 23:51:36.615 [main]   INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-29 23:51:36.640 [main]   INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 23:51:36.957 [main]   ERROR i.n.r.d.DnsServerAddressStreamProviders - Unable to load io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'. Use DEBUG level to see the full stack: java.lang.UnsatisfiedLinkError: failed to load the required native library
+2025-10-29 23:51:37.303 [main]   INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-10-29 23:51:37.308 [main]   INFO  s.stockalert.StockAlertApplicationKt - Started StockAlertApplicationKt in 2.188 seconds (process running for 2.562)

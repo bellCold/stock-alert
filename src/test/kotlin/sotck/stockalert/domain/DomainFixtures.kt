@@ -5,6 +5,7 @@ import sotck.stockalert.domain.alert.AlertCondition
 import sotck.stockalert.domain.alert.AlertType
 import sotck.stockalert.domain.stock.Price
 import sotck.stockalert.domain.stock.Stock
+import sotck.stockalert.domain.user.Email
 import sotck.stockalert.domain.user.User
 import sotck.stockalert.domain.user.UserStatus
 import java.math.BigDecimal
@@ -69,7 +70,7 @@ object UserFixture {
         status: UserStatus = UserStatus.ACTIVE
     ): User {
         return User(
-            email = email,
+            email = Email(email),
             name = name,
             password = password,
             status = status
@@ -82,7 +83,7 @@ object UserFixture {
         password: String = "hashed_password"
     ): User {
         return User(
-            email = email,
+            email = Email(email),
             name = name,
             password = password,
             status = UserStatus.INACTIVE
@@ -95,7 +96,7 @@ object UserFixture {
         password: String = "hashed_password"
     ): User {
         return User(
-            email = email,
+            email = Email(email),
             name = name,
             password = password,
             status = UserStatus.SUSPENDED

@@ -6,6 +6,8 @@ import sotck.stockalert.common.exception.InvalidCredentialsException
 import sotck.stockalert.common.exception.UserAlreadyExistsException
 import sotck.stockalert.common.security.JwtTokenProvider
 import sotck.stockalert.common.security.PasswordEncoder
+import sotck.stockalert.domain.user.Email
+import sotck.stockalert.domain.user.Password
 import sotck.stockalert.domain.user.User
 import sotck.stockalert.domain.user.UserRepository
 
@@ -14,26 +16,29 @@ import sotck.stockalert.domain.user.UserRepository
 class AuthService(private val userRepository: UserRepository, private val passwordEncoder: PasswordEncoder, private val jwtTokenProvider: JwtTokenProvider) {
 
     fun signUp(request: SignUpRequest): SignUpResponse {
-        if (userRepository.findByEmail(request.email) != null) {
-            throw UserAlreadyExistsException(request.email)
+        val email = Email(request.email)
+
+        if (userRepository.findByEmail(email.value) != null) {
+            throw UserAlreadyExistsException(email.value)
         }
 
-        val encodedPassword = passwordEncoder.encode(request.password)
+        val password = Password(request.password)
+        val encodedPassword = passwordEncoder.encode(password.value)
 
         val user = User(
-            email = request.email,
+            email = email,
             name = request.name,
             password = encodedPassword
         )
 
         val savedUser = userRepository.save(user)
 
-        val accessToken = jwtTokenProvider.generateAccessToken(savedUser.id, savedUser.email)
+        val accessToken = jwtTokenProvider.generateAccessToken(savedUser.id, savedUser.email.value)
         val refreshToken = jwtTokenProvider.generateRefreshToken(savedUser.id)
 
         return SignUpResponse(
             userId = savedUser.id,
-            email = savedUser.email,
+            email = savedUser.email.value,
             name = savedUser.name,
             accessToken = accessToken,
             refreshToken = refreshToken
@@ -41,9 +46,11 @@ class AuthService(private val userRepository: UserRepository, private val passwo
     }
 
     fun signIn(request: SignInRequest): SignInResponse {
-        val user = userRepository.findByEmail(request.email) ?: throw InvalidCredentialsException()
+        val email = Email(request.email)
+        val user = userRepository.findByEmail(email.value) ?: throw InvalidCredentialsException()
 
-        if (!passwordEncoder.matches(request.password, user.password)) {
+        val password = Password(request.password)
+        if (!passwordEncoder.matches(password.value, user.password)) {
             throw InvalidCredentialsException()
         }
 
@@ -51,12 +58,12 @@ class AuthService(private val userRepository: UserRepository, private val passwo
             throw InvalidCredentialsException()
         }
 
-        val accessToken = jwtTokenProvider.generateAccessToken(user.id, user.email)
+        val accessToken = jwtTokenProvider.generateAccessToken(user.id, user.email.value)
         val refreshToken = jwtTokenProvider.generateRefreshToken(user.id)
 
         return SignInResponse(
             userId = user.id,
-            email = user.email,
+            email = user.email.value,
             name = user.name,
             accessToken = accessToken,
             refreshToken = refreshToken
@@ -72,7 +79,7 @@ class AuthService(private val userRepository: UserRepository, private val passwo
 
         val user = userRepository.findById(userId) ?: throw InvalidCredentialsException()
 
-        val newAccessToken = jwtTokenProvider.generateAccessToken(user.id, user.email)
+        val newAccessToken = jwtTokenProvider.generateAccessToken(user.id, user.email.value)
 
         return RefreshTokenResponse(
             accessToken = newAccessToken
