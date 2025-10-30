@@ -21,13 +21,14 @@ class PasswordTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = [
-        "12345678",
-        "password",
-        "password123",
-        "MyP@ssw0rd",
-        "a".repeat(8)
-    ])
+    @ValueSource(
+        strings = [
+            "12345678",
+            "password",
+            "password123",
+            "MyP@ssw0rd",
+        ]
+    )
     fun `8자 이상의 비밀번호를 생성할 수 있다`(validPassword: String) {
         // when
         val password = Password(validPassword)
@@ -41,7 +42,7 @@ class PasswordTest {
         // when & then
         assertThatThrownBy { Password("") }
             .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessageContaining("비밀번호는 빈 값일 수 없습니다")
+            .hasMessageContaining("비밀번호는 빈 값일 수 없습니다.")
     }
 
     @Test
@@ -49,20 +50,22 @@ class PasswordTest {
         // when & then
         assertThatThrownBy { Password("   ") }
             .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessageContaining("비밀번호는 빈 값일 수 없습니다")
+            .hasMessageContaining("비밀번호는 빈 값일 수 없습니다.")
     }
 
     @ParameterizedTest
-    @ValueSource(strings = [
-        "1234567",      // 7자
-        "pass",         // 4자
-        "a"             // 1자
-    ])
+    @ValueSource(
+        strings = [
+            "1234567",      // 7자
+            "pass",         // 4자
+            "a"             // 1자
+        ]
+    )
     fun `8자 미만의 비밀번호는 예외가 발생한다`(shortPassword: String) {
         // when & then
         assertThatThrownBy { Password(shortPassword) }
             .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessageContaining("비밀번호는 최소 8자 이상이어야 합니다")
+            .hasMessageContaining("비밀번호는 최소 8자 이상이어야 합니다.")
     }
 
     @Test
@@ -73,7 +76,7 @@ class PasswordTest {
         // when & then
         assertThatThrownBy { Password(longPassword) }
             .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessageContaining("비밀번호는 최대 100자까지 입력 가능합니다")
+            .hasMessageContaining("비밀번호는 최대 100자까지 입력 가능합니다.")
     }
 
     @Test

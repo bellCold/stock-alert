@@ -40,7 +40,7 @@ class EmailTest {
         // when & then
         assertThatThrownBy { Email("") }
             .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessageContaining("이메일은 빈 값일 수 없습니다")
+            .hasMessageContaining("이메일은 빈 값일 수 없습니다.")
     }
 
     @Test
@@ -48,7 +48,7 @@ class EmailTest {
         // when & then
         assertThatThrownBy { Email("   ") }
             .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessageContaining("이메일은 빈 값일 수 없습니다")
+            .hasMessageContaining("이메일은 빈 값일 수 없습니다.")
     }
 
     @ParameterizedTest
@@ -76,6 +76,6 @@ class EmailTest {
         // when & then
         assertThatThrownBy { Email(longEmail) }
             .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessageContaining("이메일은 최대 255자까지 입력 가능합니다")
+            .hasMessageContaining("이메일은 최대 255자까지 입력 가능합니다.")
     }
 }
