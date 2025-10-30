@@ -1,5 +1,6 @@
 package sotck.stockalert.adapter.`in`.web
 
+import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.*
 import sotck.stockalert.adapter.`in`.web.request.CreateAlertRequest
 import sotck.stockalert.adapter.`in`.web.response.AlertResponse
@@ -21,7 +22,7 @@ class AlertController(
 ) {
 
     @PostMapping
-    fun createAlert(@RequestBody request: CreateAlertRequest, @AuthUserId userId: Long): ApiResponse<AlertResponse> {
+    fun createAlert(@Valid @RequestBody request: CreateAlertRequest, @AuthUserId userId: Long): ApiResponse<AlertResponse> {
         val alert = createAlertUseCase.createAlert(CreateAlertCommand.from(request, userId))
         return ApiResponse.success(AlertResponse.from(alert))
     }

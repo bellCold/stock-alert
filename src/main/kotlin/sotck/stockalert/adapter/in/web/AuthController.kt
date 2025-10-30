@@ -1,5 +1,6 @@
 package sotck.stockalert.adapter.`in`.web
 
+import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -25,19 +26,19 @@ class AuthController(
     private val refreshAccessTokenUseCase: RefreshAccessTokenUseCase
 ) {
     @PostMapping("/signup")
-    fun signUp(@RequestBody request: SignUpRequest): ApiResponse<SignUpResponse> {
+    fun signUp(@Valid @RequestBody request: SignUpRequest): ApiResponse<SignUpResponse> {
         val result = signUpUseCase.signUp(SignUpCommand.from(request))
         return ApiResponse.success(SignUpResponse.from(result))
     }
 
     @PostMapping("/signin")
-    fun signIn(@RequestBody request: SignInRequest): ApiResponse<SignInResponse> {
+    fun signIn(@Valid @RequestBody request: SignInRequest): ApiResponse<SignInResponse> {
         val result = signInUseCase.signIn(SignInCommand.from(request))
         return ApiResponse.success(SignInResponse.from(result))
     }
 
     @PostMapping("/refresh")
-    fun refreshToken(@RequestBody request: RefreshTokenRequest): ApiResponse<RefreshTokenResponse> {
+    fun refreshToken(@Valid @RequestBody request: RefreshTokenRequest): ApiResponse<RefreshTokenResponse> {
         val result = refreshAccessTokenUseCase.refreshAccessToken(request.refreshToken)
         return ApiResponse.success(RefreshTokenResponse.from(result))
     }

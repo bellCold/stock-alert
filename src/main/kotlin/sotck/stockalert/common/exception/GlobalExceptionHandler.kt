@@ -74,8 +74,6 @@ class GlobalExceptionHandler {
         problemDetail.instance = URI.create(requestURI)
         problemDetail.setProperty("errorCode", errorCode.code)
 
-        return ResponseEntity
-            .status(errorCode.status)
-            .body(problemDetail)
+        return ResponseEntity.status(errorCode.status).body(problemDetail)
     }
 }
