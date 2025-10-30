@@ -2,6 +2,14 @@ package sotck.stockalert.application.service
 
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import sotck.stockalert.application.dto.RefreshTokenResult
+import sotck.stockalert.application.dto.SignInCommand
+import sotck.stockalert.application.dto.SignInResult
+import sotck.stockalert.application.dto.SignUpCommand
+import sotck.stockalert.application.dto.SignUpResult
+import sotck.stockalert.application.port.`in`.RefreshAccessTokenUseCase
+import sotck.stockalert.application.port.`in`.SignInUseCase
+import sotck.stockalert.application.port.`in`.SignUpUseCase
 import sotck.stockalert.common.exception.InvalidCredentialsException
 import sotck.stockalert.common.exception.UserAlreadyExistsException
 import sotck.stockalert.common.security.JwtTokenProvider
@@ -13,21 +21,25 @@ import sotck.stockalert.domain.user.UserRepository
 
 @Service
 @Transactional
-class AuthService(private val userRepository: UserRepository, private val passwordEncoder: PasswordEncoder, private val jwtTokenProvider: JwtTokenProvider) {
+class AuthService(
+    private val userRepository: UserRepository,
+    private val passwordEncoder: PasswordEncoder,
+    private val jwtTokenProvider: JwtTokenProvider
+) : SignUpUseCase, SignInUseCase, RefreshAccessTokenUseCase {
 
-    fun signUp(request: SignUpRequest): SignUpResponse {
-        val email = Email(request.email)
+    override fun signUp(command: SignUpCommand): SignUpResult {
+        val email = Email(command.email)
 
         if (userRepository.findByEmail(email.value) != null) {
             throw UserAlreadyExistsException(email.value)
         }
 
-        val password = Password(request.password)
+        val password = Password(command.password)
         val encodedPassword = passwordEncoder.encode(password.value)
 
         val user = User(
             email = email,
-            name = request.name,
+            name = command.name,
             password = encodedPassword
         )
 
@@ -36,7 +48,7 @@ class AuthService(private val userRepository: UserRepository, private val passwo
         val accessToken = jwtTokenProvider.generateAccessToken(savedUser.id, savedUser.email.value)
         val refreshToken = jwtTokenProvider.generateRefreshToken(savedUser.id)
 
-        return SignUpResponse(
+        return SignUpResult(
             userId = savedUser.id,
             email = savedUser.email.value,
             name = savedUser.name,
@@ -45,11 +57,11 @@ class AuthService(private val userRepository: UserRepository, private val passwo
         )
     }
 
-    fun signIn(request: SignInRequest): SignInResponse {
-        val email = Email(request.email)
+    override fun signIn(command: SignInCommand): SignInResult {
+        val email = Email(command.email)
         val user = userRepository.findByEmail(email.value) ?: throw InvalidCredentialsException()
 
-        val password = Password(request.password)
+        val password = Password(command.password)
         if (!passwordEncoder.matches(password.value, user.password)) {
             throw InvalidCredentialsException()
         }
@@ -61,7 +73,7 @@ class AuthService(private val userRepository: UserRepository, private val passwo
         val accessToken = jwtTokenProvider.generateAccessToken(user.id, user.email.value)
         val refreshToken = jwtTokenProvider.generateRefreshToken(user.id)
 
-        return SignInResponse(
+        return SignInResult(
             userId = user.id,
             email = user.email.value,
             name = user.name,
@@ -70,7 +82,7 @@ class AuthService(private val userRepository: UserRepository, private val passwo
         )
     }
 
-    fun refreshAccessToken(refreshToken: String): RefreshTokenResponse {
+    override fun refreshAccessToken(refreshToken: String): RefreshTokenResult {
         if (!jwtTokenProvider.validateToken(refreshToken) || !jwtTokenProvider.isRefreshToken(refreshToken)) {
             throw InvalidCredentialsException()
         }
@@ -81,39 +93,8 @@ class AuthService(private val userRepository: UserRepository, private val passwo
 
         val newAccessToken = jwtTokenProvider.generateAccessToken(user.id, user.email.value)
 
-        return RefreshTokenResponse(
+        return RefreshTokenResult(
             accessToken = newAccessToken
         )
     }
 }
-
-data class SignUpRequest(
-    val email: String,
-    val name: String,
-    val password: String
-)
-
-data class SignUpResponse(
-    val userId: Long,
-    val email: String,
-    val name: String,
-    val accessToken: String,
-    val refreshToken: String
-)
-
-data class SignInRequest(
-    val email: String,
-    val password: String
-)
-
-data class SignInResponse(
-    val userId: Long,
-    val email: String,
-    val name: String,
-    val accessToken: String,
-    val refreshToken: String
-)
-
-data class RefreshTokenResponse(
-    val accessToken: String
-)

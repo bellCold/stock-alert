@@ -1,78 +1,45 @@
 package sotck.stockalert.adapter.`in`.web
 
 import org.springframework.web.bind.annotation.*
-import sotck.stockalert.application.service.AlertManagementService
-import sotck.stockalert.application.service.CreateAlertRequest
+import sotck.stockalert.adapter.`in`.web.request.CreateAlertRequest
+import sotck.stockalert.adapter.`in`.web.response.AlertResponse
+import sotck.stockalert.application.dto.CreateAlertCommand
+import sotck.stockalert.application.port.`in`.CreateAlertUseCase
+import sotck.stockalert.application.port.`in`.DeleteAlertUseCase
+import sotck.stockalert.application.port.`in`.DisableAlertUseCase
+import sotck.stockalert.application.port.`in`.GetUserAlertsUseCase
 import sotck.stockalert.common.auth.AuthUserId
 import sotck.stockalert.common.response.ApiResponse
-import sotck.stockalert.domain.alert.Alert
-import sotck.stockalert.domain.alert.AlertType
-import java.math.BigDecimal
-import java.time.LocalDateTime
 
 @RestController
 @RequestMapping("/api/v1/alerts")
-class AlertController(private val alertManagementService: AlertManagementService) {
+class AlertController(
+    private val createAlertUseCase: CreateAlertUseCase,
+    private val getUserAlertsUseCase: GetUserAlertsUseCase,
+    private val disableAlertUseCase: DisableAlertUseCase,
+    private val deleteAlertUseCase: DeleteAlertUseCase
+) {
 
     @PostMapping
-    fun createAlert(@RequestBody request: CreateAlertApiRequest, @AuthUserId userId: Long): ApiResponse<AlertResponse> {
-        val alert = alertManagementService.createAlert(
-            CreateAlertRequest(
-                userId = userId,
-                stockCode = request.stockCode,
-                alertType = request.alertType,
-                targetPrice = request.targetPrice,
-                changeRateThreshold = request.changeRateThreshold,
-                isAbove = request.isAbove
-            )
-        )
-        return ApiResponse.success(alert.toResponse())
+    fun createAlert(@RequestBody request: CreateAlertRequest, @AuthUserId userId: Long): ApiResponse<AlertResponse> {
+        val alert = createAlertUseCase.createAlert(CreateAlertCommand.from(request, userId))
+        return ApiResponse.success(AlertResponse.from(alert))
     }
 
     @GetMapping
     fun getUserAlerts(@AuthUserId userId: Long): ApiResponse<List<AlertResponse>> {
-        val alerts = alertManagementService.getUserAlerts(userId)
-        return ApiResponse.success(alerts.map { it.toResponse() })
+        val alerts = getUserAlertsUseCase.getUserAlerts(userId)
+        return ApiResponse.success(alerts.map { AlertResponse.from(it) })
     }
 
     @DeleteMapping("/{alertId}")
     fun deleteAlert(@PathVariable alertId: Long, @AuthUserId userId: Long) {
-        alertManagementService.deleteAlert(alertId, userId)
+        deleteAlertUseCase.deleteAlert(alertId, userId)
     }
 
     @PutMapping("/{alertId}/disable")
     fun disableAlert(@PathVariable alertId: Long, @AuthUserId userId: Long): ApiResponse<Unit> {
-        alertManagementService.disableAlert(alertId, userId) //  test
+        disableAlertUseCase.disableAlert(alertId, userId)
         return ApiResponse.success(Unit)
     }
 }
-
-data class CreateAlertApiRequest(
-    val stockCode: String,
-    val alertType: AlertType,
-    val targetPrice: BigDecimal? = null,
-    val changeRateThreshold: BigDecimal? = null,
-    val isAbove: Boolean? = null
-)
-
-data class AlertResponse(
-    val id: Long?,
-    val stockId: Long,
-    val alertType: AlertType,
-    val status: String,
-    val targetPrice: BigDecimal?,
-    val changeRateThreshold: BigDecimal?,
-    val createdAt: LocalDateTime,
-    val triggeredAt: LocalDateTime?
-)
-
-fun Alert.toResponse() = AlertResponse(
-    id = this.id,
-    stockId = this.stockId,
-    alertType = this.alertType,
-    status = this.status.name,
-    targetPrice = this.condition.targetPrice,
-    changeRateThreshold = this.condition.changeRateThreshold,
-    createdAt = this.createdAt,
-    triggeredAt = this.triggeredAt
-)

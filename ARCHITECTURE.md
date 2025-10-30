@@ -33,10 +33,21 @@ stock-alert/
 │       └── UserRepository.kt         # 저장소 인터페이스
 │
 ├── application/                      # 애플리케이션 서비스 계층
-│   ├── service/                      # Use Case 구현
+│   ├── service/                      # Use Case 구현체
 │   │   ├── StockPriceMonitoringService.kt  # 주가 모니터링, 알림 체크
-│   │   └── AlertManagementService.kt       # 알림 CRUD 관리
-│   └── port/                         # 포트 정의
+│   │   ├── StockQueryService.kt            # 주식 조회 서비스
+│   │   ├── AlertManagementService.kt       # 알림 CRUD 관리
+│   │   └── AuthService.kt                  # 인증/인가 서비스
+│   ├── dto/                          # DTO (Command, Result)
+│   │   ├── CreateAlertCommand.kt     # 알림 생성 Command
+│   │   ├── SignUpCommand.kt          # 회원가입 Command
+│   │   ├── SignInCommand.kt          # 로그인 Command
+│   │   └── AuthResult.kt             # 인증 결과 Result
+│   └── port/                         # 포트 정의 (인터페이스)
+│       ├── in/                       # 인바운드 포트 (UseCases)
+│       │   ├── AlertUseCase.kt       # 알림 UseCases (Create, Get, Disable, Delete)
+│       │   ├── AuthUseCase.kt        # 인증 UseCases (SignUp, SignIn, Refresh)
+│       │   └── StockUseCase.kt       # 주식 UseCases (Get, GetAll, UpdatePrice)
 │       └── out/                      # 아웃바운드 포트
 │           ├── StockDataPort.kt      # 외부 주식 데이터 API 포트
 │           └── NotificationPort.kt   # 알림 전송 포트
@@ -156,15 +167,59 @@ stock-alert/
 
 ## 주요 디자인 패턴
 
-### 1. Hexagonal Architecture (포트 & 어댑터)
+### 1. Hexagonal Architecture (포트 & 어댑터) - 완전한 구현
 ```
-[외부 세계] ←→ [Adapter] ←→ [Port] ←→ [Application] ←→ [Domain]
+[Controller] ←→ [Inbound Port(UseCase)] ←→ [Service] ←→ [Outbound Port] ←→ [Adapter]
+```
+
+**Inbound (Driving) - 외부에서 애플리케이션으로**:
+```kotlin
+// 1. Controller (Adapter)
+class AlertController(
+    private val createAlertUseCase: CreateAlertUseCase,  // Port에 의존!
+    private val getUserAlertsUseCase: GetUserAlertsUseCase
+) {
+    fun createAlert(request: CreateAlertRequest, userId: Long): ApiResponse<AlertResponse> {
+        val alert = createAlertUseCase.createAlert(CreateAlertCommand.from(request, userId))
+        return ApiResponse.success(AlertResponse.from(alert))
+    }
+}
+
+// 2. Port (Interface)
+interface CreateAlertUseCase {
+    fun createAlert(command: CreateAlertCommand): Alert
+}
+
+// 3. Service (구현체)
+@Service
+class AlertManagementService : CreateAlertUseCase {
+    override fun createAlert(command: CreateAlertCommand): Alert {
+        // 비즈니스 로직 실행
+    }
+}
+```
+
+**Outbound (Driven) - 애플리케이션에서 외부로**:
+```kotlin
+// 1. Port (Interface)
+interface StockDataPort {
+    fun getCurrentPrice(stockCode: String): Price?
+}
+
+// 2. Adapter (구현체)
+@Component
+class NaverApiClient : StockDataPort {
+    override fun getCurrentPrice(stockCode: String): Price? {
+        // Naver API 호출
+    }
+}
 ```
 
 **장점**:
-- 비즈니스 로직과 기술 스택 분리
-- 테스트 용이성 (Mock 객체로 Port 대체)
-- 기술 스택 교체 용이 (예: MySQL → PostgreSQL)
+- **의존성 역전**: Controller가 구현체가 아닌 인터페이스에 의존
+- **테스트 용이성**: UseCase를 Mock으로 쉽게 대체 가능
+- **유연성**: Service 구현을 변경해도 Controller는 영향 없음
+- **명확한 경계**: Adapter ↔ Port ↔ Application ↔ Domain 경계 명확
 
 ### 2. Strategy Pattern (전략 패턴)
 `AlertCondition`을 통해 다양한 알림 조건을 유연하게 처리
@@ -205,7 +260,61 @@ Spring MVC의 ArgumentResolver를 활용한 횡단 관심사 처리
 @AuthUserId userId: Long  // X-User-Id 헤더 자동 파싱
 ```
 
-### 6. RFC 7807 Problem Details
+### 6. DTO Layer Separation (DTO 계층 분리)
+API Request/Response DTO와 Service Layer Command/Result DTO 분리
+
+```kotlin
+// 1. API Request (adapter/in/web/request)
+data class CreateAlertRequest(
+    val stockCode: String,
+    val alertType: AlertType,
+    val targetPrice: BigDecimal?
+)
+
+// 2. Service Command (application/dto)
+data class CreateAlertCommand(
+    val userId: Long,
+    val stockCode: String,
+    val alertType: AlertType,
+    val targetPrice: BigDecimal?
+) {
+    companion object {
+        fun from(request: CreateAlertRequest, userId: Long): CreateAlertCommand {
+            return CreateAlertCommand(
+                userId = userId,
+                stockCode = request.stockCode,
+                alertType = request.alertType,
+                targetPrice = request.targetPrice
+            )
+        }
+    }
+}
+
+// 3. API Response (adapter/in/web/response)
+data class AlertResponse(
+    val id: Long?,
+    val stockId: Long,
+    val alertType: AlertType
+) {
+    companion object {
+        fun from(alert: Alert): AlertResponse {
+            return AlertResponse(
+                id = alert.id,
+                stockId = alert.stockId,
+                alertType = alert.alertType
+            )
+        }
+    }
+}
+```
+
+**장점**:
+- **명확한 계층 분리**: API 계층과 Service 계층의 DTO 독립성
+- **변환 로직 캡슐화**: Companion object의 from() 메서드로 변환 로직 집중
+- **전역 접근 방지**: 확장 함수 대신 companion object 사용으로 스코프 제한
+- **의도 명확화**: `ClassName.from()` 패턴으로 변환 의도 명시
+
+### 7. RFC 7807 Problem Details
 표준 에러 응답 포맷 사용
 
 ```json

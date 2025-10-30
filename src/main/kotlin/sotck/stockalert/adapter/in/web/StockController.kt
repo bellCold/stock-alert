@@ -1,50 +1,36 @@
 package sotck.stockalert.adapter.`in`.web
 
 import org.springframework.web.bind.annotation.*
-import sotck.stockalert.application.service.StockPriceMonitoringService
-import sotck.stockalert.application.service.StockQueryService
+import sotck.stockalert.adapter.`in`.web.response.StockResponse
+import sotck.stockalert.application.port.`in`.GetAllStocksUseCase
+import sotck.stockalert.application.port.`in`.GetStockUseCase
+import sotck.stockalert.application.port.`in`.UpdateStockPriceUseCase
 import sotck.stockalert.common.response.ApiResponse
-import sotck.stockalert.domain.stock.Stock
-import java.math.BigDecimal
 
 @RestController
 @RequestMapping("/api/v1/stocks")
-class StockController(private val stockQueryService: StockQueryService, private val stockPriceMonitoringService: StockPriceMonitoringService) {
+class StockController(
+    private val getStockUseCase: GetStockUseCase,
+    private val getAllStocksUseCase: GetAllStocksUseCase,
+    private val updateStockPriceUseCase: UpdateStockPriceUseCase
+) {
 
     @GetMapping("/{stockCode}")
     fun getStock(@PathVariable stockCode: String): ApiResponse<StockResponse> {
-        val stock = stockQueryService.getStock(stockCode)
-        return ApiResponse.success(stock.toResponse())
+        val stock = getStockUseCase.getStock(stockCode)
+        return ApiResponse.success(StockResponse.from(stock))
     }
 
     @PostMapping("/{stockCode}/refresh")
     fun refreshStockPrice(@PathVariable stockCode: String): ApiResponse<StockResponse> {
-        stockPriceMonitoringService.updateStockPrice(stockCode)
-        val stock = stockQueryService.getStock(stockCode)
-        return ApiResponse.success(stock.toResponse())
+        updateStockPriceUseCase.updateStockPrice(stockCode)
+        val stock = getStockUseCase.getStock(stockCode)
+        return ApiResponse.success(StockResponse.from(stock))
     }
 
     @GetMapping
     fun getAllStocks(): ApiResponse<List<StockResponse>> {
-        val stocks = stockQueryService.getAllStocks()
-        return ApiResponse.success(stocks.map { it.toResponse() })
+        val stocks = getAllStocksUseCase.getAllStocks()
+        return ApiResponse.success(stocks.map { StockResponse.from(it) })
     }
 }
-
-data class StockResponse(
-    val id: Long?,
-    val stockCode: String,
-    val stockName: String,
-    val currentPrice: BigDecimal,
-    val highestPrice: BigDecimal,
-    val lastUpdatedAt: String
-)
-
-fun Stock.toResponse() = StockResponse(
-    id = this.id,
-    stockCode = this.stockCode,
-    stockName = this.stockName,
-    currentPrice = this.currentPrice.value,
-    highestPrice = this.highestPrice.value,
-    lastUpdatedAt = this.updatedAt.toString()
-)

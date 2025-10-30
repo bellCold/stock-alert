@@ -2,6 +2,7 @@ package sotck.stockalert.application.service
 
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import sotck.stockalert.application.port.`in`.UpdateStockPriceUseCase
 import sotck.stockalert.application.port.out.NotificationPort
 import sotck.stockalert.application.port.out.StockDataPort
 import sotck.stockalert.domain.alert.Alert
@@ -17,7 +18,7 @@ class StockPriceMonitoringService(
     private val alertRepository: AlertRepository,
     private val stockDataPort: StockDataPort,
     private val notificationPort: NotificationPort
-) {
+) : UpdateStockPriceUseCase {
     fun checkAndNotifyAlerts() {
         val activeAlerts = alertRepository.findActiveAlerts()
 
@@ -36,7 +37,7 @@ class StockPriceMonitoringService(
         }
     }
 
-    fun updateStockPrice(stockCode: String) {
+    override fun updateStockPrice(stockCode: String) {
         val stock = stockRepository.findByStockCode(stockCode) ?: throw IllegalArgumentException("Stock not found: $stockCode")
 
         val currentPrice = stockDataPort.getCurrentPrice(stockCode) ?: throw IllegalStateException("Failed to fetch price for: $stockCode")

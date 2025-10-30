@@ -2,6 +2,11 @@ package sotck.stockalert.application.service
 
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import sotck.stockalert.application.dto.CreateAlertCommand
+import sotck.stockalert.application.port.`in`.CreateAlertUseCase
+import sotck.stockalert.application.port.`in`.DeleteAlertUseCase
+import sotck.stockalert.application.port.`in`.DisableAlertUseCase
+import sotck.stockalert.application.port.`in`.GetUserAlertsUseCase
 import sotck.stockalert.common.exception.StockNotFoundException
 import sotck.stockalert.common.exception.UnauthorizedAlertAccessException
 import sotck.stockalert.domain.alert.Alert
@@ -9,30 +14,32 @@ import sotck.stockalert.domain.alert.AlertCondition
 import sotck.stockalert.domain.alert.AlertRepository
 import sotck.stockalert.domain.alert.AlertType
 import sotck.stockalert.domain.stock.StockRepository
-import java.math.BigDecimal
 
 @Service
 @Transactional
-class AlertManagementService(private val alertRepository: AlertRepository, private val stockRepository: StockRepository) {
+class AlertManagementService(
+    private val alertRepository: AlertRepository,
+    private val stockRepository: StockRepository
+) : CreateAlertUseCase, GetUserAlertsUseCase, DisableAlertUseCase, DeleteAlertUseCase {
 
-    fun createAlert(request: CreateAlertRequest): Alert {
-        val stock = stockRepository.findByStockCode(request.stockCode) ?: throw StockNotFoundException(request.stockCode)
+    override fun createAlert(command: CreateAlertCommand): Alert {
+        val stock = stockRepository.findByStockCode(command.stockCode) ?: throw StockNotFoundException(command.stockCode)
 
-        val condition = when (request.alertType) {
+        val condition = when (command.alertType) {
             AlertType.TARGET_PRICE -> AlertCondition(
-                targetPrice = request.targetPrice,
-                isAbove = request.isAbove ?: true
+                targetPrice = command.targetPrice,
+                isAbove = command.isAbove ?: true
             )
 
-            AlertType.CHANGE_RATE -> AlertCondition(changeRateThreshold = request.changeRateThreshold)
+            AlertType.CHANGE_RATE -> AlertCondition(changeRateThreshold = command.changeRateThreshold)
 
             else -> AlertCondition()
         }
 
         val alert = Alert(
             stockId = stock.id!!,
-            userId = request.userId,
-            alertType = request.alertType,
+            userId = command.userId,
+            alertType = command.alertType,
             condition = condition
         )
 
@@ -40,11 +47,11 @@ class AlertManagementService(private val alertRepository: AlertRepository, priva
     }
 
     @Transactional(readOnly = true)
-    fun getUserAlerts(userId: Long): List<Alert> {
+    override fun getUserAlerts(userId: Long): List<Alert> {
         return alertRepository.findByUserId(userId)
     }
 
-    fun disableAlert(alertId: Long, userId: Long) {
+    override fun disableAlert(alertId: Long, userId: Long) {
         val alert = alertRepository.findByUserId(userId).firstOrNull { it.id == alertId } ?: throw UnauthorizedAlertAccessException(alertId, userId)
 
         alert.disable()
@@ -52,18 +59,9 @@ class AlertManagementService(private val alertRepository: AlertRepository, priva
         alertRepository.save(alert)
     }
 
-    fun deleteAlert(alertId: Long, userId: Long) {
+    override fun deleteAlert(alertId: Long, userId: Long) {
         val alert = alertRepository.findByUserId(userId).firstOrNull { it.id == alertId } ?: throw UnauthorizedAlertAccessException(alertId, userId)
 
         alertRepository.delete(alert)
     }
 }
-
-data class CreateAlertRequest(
-    val userId: Long,
-    val stockCode: String,
-    val alertType: AlertType,
-    val targetPrice: BigDecimal? = null,
-    val changeRateThreshold: BigDecimal? = null,
-    val isAbove: Boolean? = null
-)
