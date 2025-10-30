@@ -42,7 +42,7 @@ class AlertController(private val alertManagementService: AlertManagementService
 
     @PutMapping("/{alertId}/disable")
     fun disableAlert(@PathVariable alertId: Long, @AuthUserId userId: Long): ApiResponse<Unit> {
-        alertManagementService.disableAlert(alertId, userId)
+        alertManagementService.disableAlert(alertId, userId) //  test
         return ApiResponse.success(Unit)
     }
 }
